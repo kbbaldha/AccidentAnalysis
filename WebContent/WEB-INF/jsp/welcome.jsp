@@ -16,7 +16,7 @@ body {
 	<br>
 	<div style="font-family: verdana; padding: 10px; border-radius: 10px; font-size: 12px; text-align:center;">
  
-		Spring MCV Tutorial by <a href="http://crunchify.com">Crunchify</a>.
+		Welcome to Accident analysis
 		Click <a
 			href="http://crunchify.com/category/java-web-development-tutorial/"
 			target="_blank">here</a> for all Java and <a
