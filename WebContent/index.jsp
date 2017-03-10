@@ -36,7 +36,7 @@ body {
       
       <ul class="nav navbar-nav navbar-right">
         
-        <li><a href="#">New User?</a></li>
+        <li><a href="welcome.html">New User?</a></li>
         <li><a href="#">Login </a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
