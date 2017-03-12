@@ -36,6 +36,9 @@ body {
 <spring:url value="/resources/scripts/controllers/accidentReportController.js" var="accidentReportController" />
 <script src="${accidentReportController}"></script>
 
+<spring:url value="/resources/scripts/services/allservices.js" var="services" />
+<script src="${services}"></script>
+
 </head>
 <body>${message}
  
