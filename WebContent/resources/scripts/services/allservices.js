@@ -8,4 +8,13 @@ myApp.service('DataService', function($http) {
     	return promise;
 	}
     
+    this.getCityList = function(){
+    	
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/cities"
+        });
+    	return promise;
+	}
+    
 });
