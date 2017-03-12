@@ -10,8 +10,11 @@ body {
 	background-image: url('http://crunchify.com/bg.png');
 }
 </style>
-<spring:url value="/resources/main.js" var="main" />
+<spring:url value="/resources/scripts/angular.min.js" var="angular" />
+<script src="${angular}"></script>
+<spring:url value="/resources/scripts/main.js" var="main" />
 <script src="${main}"></script>
+
 </head>
 <body>${message}
  
