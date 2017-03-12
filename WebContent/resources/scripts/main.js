@@ -1,2 +1,1 @@
-console.log('hi');
-alert('hi');
+var myApp = angular.module('myApp',[]);
