@@ -73,7 +73,7 @@ body {
       <ul class="nav navbar-nav navbar-right">
         
        
-        <li><a href="#">Logout </a></li>
+        <li><a href="logout.jsp">Logout </a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
