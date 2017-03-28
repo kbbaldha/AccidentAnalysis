@@ -1,0 +1,76 @@
+CREATE TABLE USER
+(User_Id int not null primary key,
+Name varchar(255),
+Password varchar(255),
+Gender varchar(255),
+Type varchar(255),
+Street varchar(255),
+City varchar(255),
+State varchar(255),
+Zip int);
+
+CREATE TABLE ROLES
+(Role_Id int not null primary key,
+Description varchar(255));
+
+CREATE TABLE TRANSPORT_OFFICIAL
+(User_Id_fk int not null primary key,
+Role_Id_fk int not null,
+foreign key (User_Id_fk) references people(User_Id),
+foreign key (Role_Id_fk) references jobtype(Role_Id));
+
+CREATE TABLE INCIDENT
+(Incident_Id int not null primary key,
+Reporter_Id_fk int,
+Timestamp timestamp,
+Event_Type varchar(255),
+Event_Subtype varchar(255),
+Latitude float,
+Longitude float,
+foreign key (Reporter_Id_fk) references people(User_Id));
+
+CREATE TABLE LANE
+(lane_id int not null primary key,
+speed int );
+
+CREATE TABLE AFFECTED
+(Incident_Id_fk int not null,
+Lane_Id_fk int not null,
+constraint pk_affected primary key (Incident_Id_fk,Lane_Id_fk),
+foreign key (Incident_Id_fk) references incident(incident_id),
+foreign key (Lane_Id_fk) references lanes(lane_id));
+
+CREATE TABLE VEHICLE
+(Vehicle_id int not null primary key,
+Make varchar(255),
+Model varchar(255));
+
+CREATE TABLE INVOLVES
+(Incident_Id_fk int,
+Vehicle_Id_fk  int,
+Speed  int,
+constraint pk_involves primary key (Incident_Id_fk,Vehicle_Id_fk),
+foreign key (Incident_Id_fk) references incident(incident_id),
+foreign key (Vehicle_Id_fk) references vehicles(Vehicle_id));
+
+CREATE TABLE INVESTIGATION
+(invs_id int not null primary key,
+incident_id_fk int,
+led_by_fk int,
+start_timestamp timestamp,
+end_timestamp timestamp,
+No_of_team_members int,
+foreign key (incident_id_fk) references incident(incident_id),
+foreign key (led_by_fk) references transport_official(User_Id_fk));
+
+CREATE TABLE CIVILIAN
+(User_id_fk int not null primary key,
+occupation varchar(255),
+foreign key (User_id_fk) references people(User_Id));
+
+CREATE TABLE PHONE_NUMBER
+(User_id_fk int not null,
+Phone int not null,
+constraint pk_phnum primary key (User_id_fk,Phone),
+foreign key (User_id_fk) references people(User_Id));
+
