@@ -5,8 +5,8 @@ import java.sql.*;
 
 public class DBConnect {
     public static final String URL = "jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl"; //"jdbc:mysql://localhost:3306/testdb";
-    public static final String USER = "kbbaldha";
-    public static final String PASS = "Avisha$123";
+    public static final String USER = "nhugar";
+    public static final String PASS = "8uhb*UHB";
     /**
      * Get a connection to database
      * @return Connection object
@@ -45,6 +45,7 @@ public class DBConnect {
 		    Statement stmt = con.createStatement();
 
 		    System.out.println("before");
+		    System.out.println(query);
 		    rset = stmt.executeQuery(query);
 		    System.out.println("after");
 		    //con.close();
