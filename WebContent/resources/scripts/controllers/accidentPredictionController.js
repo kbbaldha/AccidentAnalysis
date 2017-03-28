@@ -11,9 +11,15 @@ myApp.controller('accidentPredictionController',  function($scope,DataService) {
   	});
   	
   	$scope.getCities = function(){
+  		//console.log($scope.$parent.loader.loading);
+  		$scope.$parent.loader.loading = true;
   		DataService.getCityList().then(function(response){
-  			console.log(response.data);
+  			//console.log($scope.$parent.loader.loading);
+  			$scope.$parent.loader.loading = false;
   			$scope.cities = response.data;
+  			
+  		},function(error){
+  			$scope.$parent.loader.loading = false;
   		})
   	}
 });

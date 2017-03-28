@@ -1,21 +1,27 @@
 package com.accidentanalysis.DAL;
-import java.sql.*;  
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.accidentanalysis.Models.*;
 
 public class TestDBData {
 
-	public String GetData(){
+	public List<City> GetData(){
 		
-		String sb = "";
-		 QueryResult QR = null;
+		
+		QueryResult QR = null;
+		List<City> cities = new ArrayList<City>();
 		try{
 			
-			System.out.println("before execute");
+			
 		     QR = DBConnect.ExecuteQuery("select name from city");
 		    ResultSet rset = QR.resultSet;
 		   
 		    while (rset.next())
-		    { System.out.println (rset.getString (1));
-		      	sb += rset.getString(1) + " , ";
+		    { //System.out.println (rset.getString (1));
+		      	//sb += rset.getString(1) + " , ";
+		      	cities.add(new City(rset.getString(1)));
 		     }
 		}
 		catch(Exception e){
@@ -31,6 +37,6 @@ public class TestDBData {
 			}
 		}
 		
-		return sb;
+		return cities;
 	}
 }

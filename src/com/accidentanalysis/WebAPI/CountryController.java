@@ -7,11 +7,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;  
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accidentanalysis.DAL.TestDBData;
+import com.accidentanalysis.Models.City;
 import com.google.gson.Gson;  
   
 @RestController  
 public class CountryController {  
    
+@RequestMapping(value = "/cities", method = RequestMethod.GET,headers="Accept=application/json")  
+ public String getCities()  
+ {  
+		 
+		List<City> cities = new ArrayList<City>();
+		
+		cities = new TestDBData().GetData();
+		
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(cities);  
+ }  
+	  
+	
  @RequestMapping(value = "/countries", method = RequestMethod.GET,headers="Accept=application/json")  
  public String getCountries()  
  {  

@@ -12,8 +12,15 @@ public class HomeController {
  
 		//String message = "<br><div style='text-align:center;'>"
 			//	+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
-		String message = new TestDBData().GetData();
+		String message = "hello welcome";// new TestDBData().GetData();
 		
 		return new ModelAndView("welcome", "message", message);
+	}
+	@RequestMapping("/logout")
+	public ModelAndView logout() {
+ 
+		String message = "logout";// new TestDBData().GetData();
+		
+		return new ModelAndView("logout", "message", message);
 	}
 }
