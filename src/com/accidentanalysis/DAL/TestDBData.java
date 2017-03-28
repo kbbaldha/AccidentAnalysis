@@ -15,7 +15,7 @@ public class TestDBData {
 		try{
 			
 			
-		     QR = DBConnect.ExecuteQuery("select name from city");
+		     QR = DBConnect.ExecuteQuery("select Phone from phone_number");
 		    ResultSet rset = QR.resultSet;
 		   
 		    while (rset.next())

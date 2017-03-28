@@ -5,8 +5,8 @@ import java.sql.*;
 
 public class DBConnect {
     public static final String URL = "jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl"; //"jdbc:mysql://localhost:3306/testdb";
-    public static final String USER = "kbbaldha";
-    public static final String PASS = "Avisha$123";
+    public static final String USER = "ka5";
+    public static final String PASS = "Westend12#";
     /**
      * Get a connection to database
      * @return Connection object
@@ -49,6 +49,49 @@ public class DBConnect {
 		    System.out.println("after");
 		    //con.close();
 		    QR.resultSet = rset; 
+		   
+		}
+		catch(Exception e){
+			System.out.println(e.toString());
+			try{
+				//con.close();
+				}
+				catch(Exception ex){
+					System.out.println(ex.toString());
+				}
+		}
+		finally{
+			
+		}
+		return QR;
+	 
+    }
+    
+    public static QueryResult ExecuteSP(String spName){
+    	
+    	Connection con = DBConnect.getConnection();
+    	QueryResult QR = new QueryResult();
+    	
+    	CallableStatement callableStatement = null;
+    	
+
+		String getDBUSERByUserIdSql = "{call " + spName + "(?)}";
+    	
+		try{
+			 // Create a Statement
+			//callableStatement.setInt(1, 10);
+		//	callableStatement.registerOutParameter(2, java.sql.Types.);
+
+			// execute getDBUSERByUserId store procedure
+			callableStatement.executeUpdate();
+
+			String userName = callableStatement.getString(2);
+			String createdBy = callableStatement.getString(3);
+			Date createdDate = callableStatement.getDate(4);
+
+			System.out.println("UserName : " + userName);
+			System.out.println("CreatedBy : " + createdBy);
+			System.out.println("CreatedDate : " + createdDate);
 		   
 		}
 		catch(Exception e){
