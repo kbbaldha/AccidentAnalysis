@@ -57,11 +57,11 @@ body {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>User Name</td>
+                        <td>User Name *</td>
                         <td><input class="form-control" type="text" name="username" value="" th:field="*{username}"/></td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td>Password *</td>
                         <td><input class="form-control" type="password" name="password" value="" th:field="*{password}"/></td>
                     </tr>
                     <tr>
@@ -108,10 +108,13 @@ body {
                     </tr>
                 </tbody>
             </table>
+             <div style="margin-left: 82px;margin-top: -16px;color: red;width: -moz-max-content;">${message}</div>
             </div>
             <div class="col-xs-3"></div>
+           
         </form>
+        
 </div>
-<div style="margin-left: 501px;margin-top: 10px;color: red;">${message}</div>
+
 </body>
 </html>

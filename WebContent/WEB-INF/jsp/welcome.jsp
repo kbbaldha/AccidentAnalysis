@@ -85,17 +85,7 @@ body {
 		<div id="loader" ng-show="loader.loading" style="position: absolute; height: 100%; background-color: rgba(0,0,0,0.5);  width: 100%;     z-index: 1000;">
 			<img src="resources/images/loader.gif" height="100px" width="100px" style="position:absolute;top:30%;left:30%;">
 		</div>
-		<script type="text/javascript">
-		$scope.isCivilian = function(value) {
-
-			if (value == Civilian)
-			  return true;
-			else 
-			  return false;
-		
-			};
-	</script>
-        <!-- Sidebar -->
+		<!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
