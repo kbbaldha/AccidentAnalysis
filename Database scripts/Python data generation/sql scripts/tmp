@@ -1,0 +1,6 @@
+CREATE TABLE INVOLVES(Incident_Id_fk int,
+Vehicle_Id_fk  int,
+Speed  int,
+constraint pk_involves primary key (Incident_Id_fk,Vehicle_Id_fk),
+foreign key (Incident_Id_fk) references INCIDENT(Incident_Id),
+foreign key (Vehicle_Id_fk) references VEHICLE(Vehicle_id));
