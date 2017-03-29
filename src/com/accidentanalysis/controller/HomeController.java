@@ -73,19 +73,17 @@ public class HomeController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registerSubmit(@ModelAttribute User user,HttpSession session) {
  
-		//String message = "logout";// new TestDBData().GetData();
-	//	System.out.println(user.getUsername());
-//		UserDbAccess userDBAccess =  new UserDbAccess();
-//		
-//		User dbUser = userDBAccess.CheckUser(user);
-//		
-//		if(null != dbUser){
-//			session.setAttribute("userlogin",dbUser);
-		System.out.println(user.getGender());
+	
+		UserDbAccess userDBAccess =  new UserDbAccess();
 		
+		User dbUser = userDBAccess.RegisterUser(user);
+		
+		if(null != dbUser){
+			session.setAttribute("userlogin",dbUser);
+		//System.out.println(user.getGender());
 			return new ModelAndView("welcome");
-//		}
-//		
-//		return new ModelAndView("login","message", "Wrong username or password");
+		}
+		
+		return new ModelAndView("register","message", "Registration Failed Try again");
 	}
 }

@@ -57,11 +57,11 @@ body {
                 <tbody>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="username" value="" th:field="*{username}" /></td>
+                        <td><input type="text" name="username" value="" th:field="*{username}"/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="password" value="" th:field="*{password}""/></td>
+                        <td><input type="password" name="password" value="" th:field="*{password}"/></td>
                     </tr>
                     <tr>
                     <td>Gender</td>
