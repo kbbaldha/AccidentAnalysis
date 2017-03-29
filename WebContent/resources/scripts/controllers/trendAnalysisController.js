@@ -37,14 +37,37 @@ myApp.controller('trendAnalysisController',  function($scope,DataService) {
 	        
 	        ];*/
 	 var dpoints = [];
+	 var max = -1;
+	 var min = 1000000000000;
 	 for(var i=0;i<data.length;i++){
 		 var d = data[i];
+		 if(max < d.noOfAccidents){
+			 max = d.noOfAccidents;
+			 
+		 }
+		 if(min > d.noOfAccidents){
+			 min = d.noOfAccidents;
+			 
+		 }
 		 dpoints.push({
 			 x: new Date(d.Year, 01, 1), 
 			 y: d.noOfAccidents
 		 });
 	 }
 	 
+	 dpoints = dpoints.map(function(item,idx){
+		 if(item.y == max){
+			 item.indexLabel = "highest";
+			 item.markerColor= "red";
+			 item.markerType = "triangle"
+		 }
+		 else if(item.y == min){
+			 item.indexLabel = "lowest";
+			 item.markerColor= "DarkSlateGrey";
+			 item.markerType = "cross"
+		 }
+		 return item;
+	 });
 	 return dpoints;
 	 
   }
