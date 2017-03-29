@@ -12,9 +12,12 @@ myApp.controller('trendAnalysisController',  function($scope,DataService) {
 	});
   
   $scope.getData = function(data){
+	  $scope.$parent.loader.loading = true;
 	  DataService.getTrendAnalysis().then(function(response){
 		  console.log(response.data);
+		  $scope.$parent.loader.loading = false;
 		  $scope.drawChart($scope.makeDataPoints(response.data)); 
+		 
 	  });
 	  
   }
