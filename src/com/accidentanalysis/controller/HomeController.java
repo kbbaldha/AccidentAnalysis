@@ -22,9 +22,9 @@ public class HomeController {
 			//	+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
 		String message = "hello welcome";// new TestDBData().GetData();
 		User user = (User)session.getAttribute("userlogin");
-		if(null==user){
-			return new ModelAndView("login","message","Session Expired");
-		}
+		//if(null==user){
+			//return new ModelAndView("login","message","Session Expired");
+		//}
 		return new ModelAndView("welcome", "message", message);
 	}
 	@RequestMapping("/logout")

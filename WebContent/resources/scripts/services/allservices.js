@@ -16,5 +16,14 @@ myApp.service('DataService', function($http) {
         });
     	return promise;
 	}
+    this.getTrendAnalysis = function(){
+    	
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getTrendAnalysis"
+        });
+    	
+    	return promise;
+    }
     
 });
