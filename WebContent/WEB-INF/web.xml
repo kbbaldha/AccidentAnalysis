@@ -19,6 +19,8 @@
         <url-pattern>/welcome.html</url-pattern>
         <url-pattern>/logout.html</url-pattern>
         <url-pattern>/logout.jsp</url-pattern>
+        <url-pattern>/login.jsp</url-pattern>
+        <url-pattern>/login.html</url-pattern>   
     </servlet-mapping>
     
     <servlet>

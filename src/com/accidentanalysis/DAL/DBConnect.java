@@ -45,6 +45,7 @@ public class DBConnect {
 		    Statement stmt = con.createStatement();
 
 		    System.out.println("before");
+		    System.out.println(query);
 		    rset = stmt.executeQuery(query);
 		    System.out.println("after");
 		    //con.close();
