@@ -1,5 +1,7 @@
 package com.accidentanalysis.DAL;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -50,5 +52,50 @@ public User CheckUser(User user){
 		
 		return user1;
 	}
+
+
+public User RegisterUser(User user){
+	
+	User user1 = null;
+	Connection connection = DBConnect.getConnection();
+		
+	String insertTableSQL = "INSERT INTO PEOPLE"
+			+ "(NAME,Password,Gender,Type,Street,City,State,Zip) VALUES"
+			+ "(?,?,?,?,?,?,?,?)";
+	
+	try{
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
+		System.out.println(user.getUsername());
+		preparedStatement.setString(1,user.getUsername());
+		preparedStatement.setString(2,user.getPassword());
+		preparedStatement.setString(3,user.getGender());
+		preparedStatement.setString(4,user.getType());
+		preparedStatement.setString(5,user.getStreet());
+		preparedStatement.setString(6,user.getCity());
+		preparedStatement.setString(7,user.getState());
+		preparedStatement.setInt(8,user.getZip());	
+		preparedStatement.executeUpdate();
+		
+		user1 = CheckUser(user);
+	  
+	}
+	catch(Exception e){
+		
+		System.out.println(e.toString());
+	}
+	finally{
+		try {
+			connection.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			return user1;
+		}
+	}
+}
 
 }
