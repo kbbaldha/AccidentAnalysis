@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.accidentanalysis.DAL.TestDBData;
 import com.accidentanalysis.DAL.UserDbAccess;
-import com.accidentanalysis.Models.User;
+import com.accidentanalysis.Models.*;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 
 @Controller
@@ -22,9 +22,9 @@ public class HomeController {
 			//	+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
 		String message = "hello welcome";// new TestDBData().GetData();
 		User user = (User)session.getAttribute("userlogin");
-		//if(null==user){
+		if(null==user){
 			return new ModelAndView("login","message","Session Expired Login Again");
-		//}
+		}
 		return new ModelAndView("welcome", "usertype",user.getType());
 	}
 	@RequestMapping("/logout")
