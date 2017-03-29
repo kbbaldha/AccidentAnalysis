@@ -16,11 +16,13 @@
     <servlet-mapping>
         <servlet-name>accanalysis</servlet-name>
         <url-pattern>/welcome.jsp</url-pattern>
-        <url-pattern>/welcome.html</url-pattern>
+      	<url-pattern>/welcome.html</url-pattern>
         <url-pattern>/logout.html</url-pattern>
         <url-pattern>/logout.jsp</url-pattern>
         <url-pattern>/login.jsp</url-pattern>
-        <url-pattern>/login.html</url-pattern>   
+        <url-pattern>/login.html</url-pattern> 
+         <url-pattern>/register.jsp</url-pattern>
+        <url-pattern>/register.html</url-pattern>  
     </servlet-mapping>
     
     <servlet>

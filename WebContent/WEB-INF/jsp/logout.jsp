@@ -45,7 +45,7 @@ body {
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <a class="navbar-brand" href="#">Accident Analysis</a>
+      <a class="navbar-brand" href="login.html">Accident Analysis</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,7 +55,7 @@ body {
       <ul class="nav navbar-nav navbar-right">
         
        
-        <li><a href="/login">Login </a></li>
+        <li><a href="login.html">Login </a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

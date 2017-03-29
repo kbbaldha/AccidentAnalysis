@@ -61,4 +61,31 @@ public class HomeController {
 		
 		return new ModelAndView("login","message", "Wrong username or password");
 	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView register() {
+ 
+		//String message = "logout";// new TestDBData().GetData();
+		
+		return new ModelAndView("register");
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView registerSubmit(@ModelAttribute User user,HttpSession session) {
+ 
+		//String message = "logout";// new TestDBData().GetData();
+	//	System.out.println(user.getUsername());
+//		UserDbAccess userDBAccess =  new UserDbAccess();
+//		
+//		User dbUser = userDBAccess.CheckUser(user);
+//		
+//		if(null != dbUser){
+//			session.setAttribute("userlogin",dbUser);
+		System.out.println(user.getGender());
+		
+			return new ModelAndView("welcome");
+//		}
+//		
+//		return new ModelAndView("login","message", "Wrong username or password");
+	}
 }

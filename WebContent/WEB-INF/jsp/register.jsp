@@ -45,13 +45,13 @@ body {
     </div>
   </div><!-- /.container-fluid -->
 </nav>
-<div id="loginform" ng-controller="HomeController" ng-app="myApp" style="margin-top: 63px" >
-<form  th:action="@{/login}" th:object="${user}" method="post">
+<div id="registerform" ng-controller="HomeController" ng-app="myApp" style="margin-top: 63px" >
+<form  th:action="@{/register}" th:object="${user}" method="post">
             <center>
             <table border="1" width="30%" cellpadding="3">
                 <thead>
                     <tr>
-                        <th colspan="2">Login Here</th>
+                        <th colspan="2">Register Here</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,11 +64,46 @@ body {
                         <td><input type="password" name="password" value="" th:field="*{password}""/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Login" /></td>
+                    <td>Gender</td>
+                         <td>
+                         <select name ="gender" value = "" th:field="*{gender}" >
+   							 <option value="F">Female</option>
+   							 <option value="M">Male</option>
+ 						</select>
+ 						</td>
+                    </tr>
+                      <tr>
+                        <td>Type</td>
+                       <td>
+                         <select name ="type" value = "" th:field="*{type}" >
+   							 <option value="Transport Official">TransportOfficial</option>
+   							 <option value="Civilian">User</option>
+ 						</select>
+ 						</td>
+                    </tr>
+                      <tr>
+                        <td>Street</td>
+                        <td><input type="text" name="username" value="" th:field="*{street}" /></td>
+                    </tr>
+                      <tr>
+                        <td>City</td>
+                        <td><input type="text" name="username" value="" th:field="*{city}" /></td>
+                    </tr>
+                      <tr>
+                        <td>State</td>
+                        <td><input type="text" name="username" value="" th:field="*{state}" /></td>
+                    </tr>
+                      <tr>
+                        <td>Zip Code</td>
+                        <td><input type="text" name="username" value="" th:field="*{zip}" /></td>
+                    </tr>
+					                    
+                    <tr>
+                        <td><input type="submit" value="Register" /></td>
                         <td><input type="reset" value="Reset" /></td>
                     </tr>
-                    <tr>
-                        <td colspan="2">Yet Not Registered!! <a href="register.html">Register Here</a></td>
+                     <tr>
+                        <td colspan="2"> Returning user ? <a href="login.html">Login Here</a></td>
                     </tr>
                 </tbody>
             </table>
