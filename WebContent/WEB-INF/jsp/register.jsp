@@ -83,19 +83,19 @@ body {
                     </tr>
                       <tr>
                         <td>Street</td>
-                        <td><input type="text" name="username" value="" th:field="*{street}" /></td>
+                        <td><input type="text" name="street" value="" th:field="*{street}" /></td>
                     </tr>
                       <tr>
                         <td>City</td>
-                        <td><input type="text" name="username" value="" th:field="*{city}" /></td>
+                        <td><input type="text" name="city" value="" th:field="*{city}" /></td>
                     </tr>
                       <tr>
                         <td>State</td>
-                        <td><input type="text" name="username" value="" th:field="*{state}" /></td>
+                        <td><input type="text" name="state" value="" th:field="*{state}" /></td>
                     </tr>
                       <tr>
                         <td>Zip Code</td>
-                        <td><input type="text" name="username" value="" th:field="*{zip}" /></td>
+                        <td><input type="text" name="zip" value="" th:field="*{zip}" /></td>
                     </tr>
 					                    
                     <tr>
