@@ -48,7 +48,9 @@ body {
 <div id="loginform" ng-controller="HomeController" ng-app="myApp" style="margin-top: 63px" >
 <form  th:action="@{/login}" th:object="${user}" method="post">
             <center>
-            <table border="1" width="30%" cellpadding="3">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+            <table  class="table">
                 <thead>
                     <tr>
                         <th colspan="2">Login Here</th>
@@ -57,22 +59,23 @@ body {
                 <tbody>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="username" value="" th:field="*{username}" /></td>
+                        <td><input class="form-control" type="text" name="username" value="" th:field="*{username}" /></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="password" value="" th:field="*{password}""/></td>
+                        <td><input class="form-control" type="password" name="password" value="" th:field="*{password}""/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Login" /></td>
-                        <td><input type="reset" value="Reset" /></td>
+                        <td></td>
+                        <td><input type="submit" value="Login" style="margin-right:10px;"/><input type="reset" value="Reset" /></td>
                     </tr>
                     <tr>
                         <td colspan="2">Yet Not Registered!! <a href="register.html">Register Here</a></td>
                     </tr>
                 </tbody>
             </table>
-            </center>
+            </div>
+            <div class="col-xs-4"></div>
         </form>
 </div>
 <div style="margin-left: 501px;margin-top: 10px;color: red;">${message}</div>

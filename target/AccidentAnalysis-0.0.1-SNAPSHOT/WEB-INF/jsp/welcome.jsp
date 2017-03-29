@@ -34,6 +34,9 @@ body {
 <spring:url value="/resources/scripts/bootstrap.min.js" var="bootstrap" />
 <script src="${bootstrap}"></script>
 
+<spring:url value="/resources/scripts/jquery.canvasjs.min.js" var="chart" />
+<script src="${chart}"></script>
+
 <spring:url value="/resources/scripts/main.js" var="main" />
 <script src="${main}"></script>
 
@@ -140,7 +143,11 @@ body {
   					</div>
   					</div>
   					<div class="animate-if" ng-if="showDiv==3" ng-controller="correlationSpeedController">{{name}}</div>
-  					<div class="animate-if" ng-if="showDiv==4" ng-controller="trendAnalysisController">{{name}}</div>
+  					<div class="animate-if" ng-if="showDiv==4" ng-controller="trendAnalysisController">
+  						<div id="chartContainer" style="height: 300px; width: 100%;">
+  						
+  						</div>
+  					</div>
   					<div class="animate-if" ng-if="showDiv==5" ng-controller="investigationReportController">{{name}}</div>
   					<div class="animate-if" ng-if="showDiv==6" ng-controller="accidentReportController">{{name}}</div>
                         

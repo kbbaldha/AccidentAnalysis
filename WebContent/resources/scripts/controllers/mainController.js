@@ -6,10 +6,15 @@ myApp.controller('mainController',  function($scope, DataService) {
   $scope.loader.loading = false;
   
   $scope.show = function(showValue){
+	  $scope.$broadcast('initEvent',showValue);
+	  
 	  $scope.showDiv = showValue;
-	  DataService.getCountryList().then(function(response){
-		  console.log(response.data);
-	  });
+	  console.log(showValue);
+	  
+	 
+	  //DataService.getCountryList().then(function(response){
+		//  console.log(response.data);
+	  //});
   }
   
   $scope.$watch("loading",function(){

@@ -47,8 +47,9 @@ body {
 </nav>
 <div id="registerform" ng-controller="HomeController" ng-app="myApp" style="margin-top: 63px" >
 <form  th:action="@{/register}" th:object="${user}" method="post">
-            <center>
-            <table border="1" width="30%" cellpadding="3">
+           <div class="col-xs-3"></div>
+           <div class="col-xs-6">
+            <table class="table">
                 <thead>
                     <tr>
                         <th colspan="2">Register Here</th>
@@ -57,16 +58,16 @@ body {
                 <tbody>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="username" value="" th:field="*{username}"/></td>
+                        <td><input class="form-control" type="text" name="username" value="" th:field="*{username}"/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="password" value="" th:field="*{password}"/></td>
+                        <td><input class="form-control" type="password" name="password" value="" th:field="*{password}"/></td>
                     </tr>
                     <tr>
                     <td>Gender</td>
                          <td>
-                         <select name ="gender" value = "" th:field="*{gender}" >
+                         <select class="form-control" name ="gender" value = "" th:field="*{gender}" >
    							 <option value="F">Female</option>
    							 <option value="M">Male</option>
  						</select>
@@ -75,7 +76,7 @@ body {
                       <tr>
                         <td>Type</td>
                        <td>
-                         <select name ="type" value = "" th:field="*{type}" >
+                         <select class="form-control" name ="type" value = "" th:field="*{type}" >
    							 <option value="Transport Official">TransportOfficial</option>
    							 <option value="Civilian">User</option>
  						</select>
@@ -83,31 +84,32 @@ body {
                     </tr>
                       <tr>
                         <td>Street</td>
-                        <td><input type="text" name="street" value="" th:field="*{street}" /></td>
+                        <td><input class="form-control" type="text" name="street" value="" th:field="*{street}" /></td>
                     </tr>
                       <tr>
                         <td>City</td>
-                        <td><input type="text" name="city" value="" th:field="*{city}" /></td>
+                        <td><input class="form-control" type="text" name="city" value="" th:field="*{city}" /></td>
                     </tr>
                       <tr>
                         <td>State</td>
-                        <td><input type="text" name="state" value="" th:field="*{state}" /></td>
+                        <td><input class="form-control" type="text" name="state" value="" th:field="*{state}" /></td>
                     </tr>
                       <tr>
                         <td>Zip Code</td>
-                        <td><input type="text" name="zip" value="" th:field="*{zip}" /></td>
+                        <td><input class="form-control" type="text" name="zip" value="" th:field="*{zip}" /></td>
                     </tr>
 					                    
                     <tr>
-                        <td><input type="submit" value="Register" /></td>
-                        <td><input type="reset" value="Reset" /></td>
+                        <td></td>
+                        <td><input type="submit" value="Register" style="margin-right:10px"/><input type="reset" value="Reset" /></td>
                     </tr>
                      <tr>
                         <td colspan="2"> Returning user ? <a href="login.html">Login Here</a></td>
                     </tr>
                 </tbody>
             </table>
-            </center>
+            </div>
+            <div class="col-xs-3"></div>
         </form>
 </div>
 <div style="margin-left: 501px;margin-top: 10px;color: red;">${message}</div>

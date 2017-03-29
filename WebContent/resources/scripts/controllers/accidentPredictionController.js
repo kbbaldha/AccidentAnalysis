@@ -10,6 +10,8 @@ myApp.controller('accidentPredictionController',  function($scope,DataService) {
   		
   	});
   	
+  	
+  	
   	$scope.getCities = function(){
   		//console.log($scope.$parent.loader.loading);
   		$scope.$parent.loader.loading = true;
