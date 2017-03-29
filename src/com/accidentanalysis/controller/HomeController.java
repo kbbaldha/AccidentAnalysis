@@ -49,7 +49,7 @@ public class HomeController {
 	public ModelAndView loginSubmit(@ModelAttribute User user,HttpSession session) {
  
 		//String message = "logout";// new TestDBData().GetData();
-		System.out.println(user.getUsername());
+	//	System.out.println(user.getUsername());
 		UserDbAccess userDBAccess =  new UserDbAccess();
 		
 		User dbUser = userDBAccess.CheckUser(user);

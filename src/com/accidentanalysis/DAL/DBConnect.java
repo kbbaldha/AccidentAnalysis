@@ -5,8 +5,8 @@ import java.sql.*;
 
 public class DBConnect {
     public static final String URL = "jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl"; //"jdbc:mysql://localhost:3306/testdb";
-    public static final String USER = "ka5";
-    public static final String PASS = "Westend12#";
+    public static final String USER = "nhugar";
+    public static final String PASS = "8uhb*UHB";
     /**
      * Get a connection to database
      * @return Connection object
