@@ -23,9 +23,9 @@ public class HomeController {
 		String message = "hello welcome";// new TestDBData().GetData();
 		User user = (User)session.getAttribute("userlogin");
 		if(null==user){
-			return new ModelAndView("login","message","Session Expired");
+			return new ModelAndView("login","message","Session Expired Login Again");
 		}
-		return new ModelAndView("welcome", "message", message);
+		return new ModelAndView("welcome", "usertype",user.getType());
 	}
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
@@ -56,7 +56,7 @@ public class HomeController {
 		
 		if(null != dbUser){
 			session.setAttribute("userlogin",dbUser);
-			return new ModelAndView("welcome");
+			return new ModelAndView("welcome","usertype",dbUser.getType());
 		}
 		
 		return new ModelAndView("login","message", "Wrong username or password");
@@ -76,14 +76,16 @@ public class HomeController {
 	
 		UserDbAccess userDBAccess =  new UserDbAccess();
 		
-		User dbUser = userDBAccess.RegisterUser(user);
+		String dbUser = userDBAccess.RegisterUser(user).toString();
 		
-		if(null != dbUser){
-			session.setAttribute("userlogin",dbUser);
+		System.out.println("reg message" + dbUser);
+		
+		if(dbUser.length()<=0){
+			session.setAttribute("userlogin",user);
 		//System.out.println(user.getGender());
-			return new ModelAndView("welcome");
+			return new ModelAndView("welcome","usertype",user.getType());
 		}
 		
-		return new ModelAndView("register","message", "Registration Failed Try again");
+		return new ModelAndView("register","message",dbUser);
 	}
 }

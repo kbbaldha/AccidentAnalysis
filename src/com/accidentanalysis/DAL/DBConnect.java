@@ -55,7 +55,7 @@ public class DBConnect {
 		catch(Exception e){
 			System.out.println(e.toString());
 			try{
-				con.close();
+				//con.close();
 				}
 				catch(Exception ex){
 					System.out.println(ex.toString());

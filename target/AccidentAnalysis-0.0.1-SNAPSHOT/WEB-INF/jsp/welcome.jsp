@@ -54,11 +54,10 @@ body {
 
 <spring:url value="/resources/scripts/services/allservices.js" var="services" />
 <script src="${services}"></script>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<!-- ${message} -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius: 0px; margin-bottom: 0px;">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius: 0px; margin-bottom: 0px;">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -83,13 +82,23 @@ body {
 		<div id="loader" ng-show="loader.loading" style="position: absolute; height: 100%; background-color: rgba(0,0,0,0.5);  width: 100%;     z-index: 1000;">
 			<img src="resources/images/loader.gif" height="100px" width="100px" style="position:absolute;top:30%;left:30%;">
 		</div>
+		<script type="text/javascript">
+		$scope.isCivilian = function(value) {
+
+			if (value == Civilian)
+			  return true;
+			else 
+			  return false;
+		
+			};
+	</script>
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href="#"> 
                         Menu
-                    </a>
+                 	</a>
                 </li>
                 <li>
                     <a href="#">Dashboard</a>
@@ -106,13 +115,13 @@ body {
                 <li>
                     <a ng-click="show(4)">Trend Analysis</a>
                 </li>
-                <li>
-                    <a ng-click="show(5)">Investigation Report</a>
+               <li>
+                    <a ng-show="'${usertype}' == 'Transpost Official'" ng-click="show(5)">Investigation Report</a>
                 </li>
                 <li>
-                    <a ng-click="show(6)">Accident Report</a>
+                    <a ng-show="'${usertype}' == 'Transpost Official'" ng-click="show(6)">Accident Report</a>
                 </li>
-            </ul>
+               </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 

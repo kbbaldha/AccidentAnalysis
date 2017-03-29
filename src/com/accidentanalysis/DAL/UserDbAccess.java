@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.servlet.config.annotation.RedirectViewControllerRegistration;
+
 import com.accidentanalysis.Models.City;
 import com.accidentanalysis.Models.User;
 
@@ -34,7 +36,7 @@ public User CheckUser(User user){
 		      	user1.setStreet(rset.getString(6));
 		      	user1.setCity(rset.getString(7));
 		      	user1.setState(rset.getString(8));
-		      	user1.setZip(rset.getInt(9));
+		      	user1.setZip(rset.getString(9));
 		     }
 		}
 		catch(Exception e){
@@ -54,7 +56,7 @@ public User CheckUser(User user){
 	}
 
 
-public User RegisterUser(User user){
+public StringBuffer RegisterUser(User user){
 	
 	User user1 = null;
 	Connection connection = DBConnect.getConnection();
@@ -63,26 +65,51 @@ public User RegisterUser(User user){
 			+ "(NAME,Password,Gender,Type,Street,City,State,Zip) VALUES"
 			+ "(?,?,?,?,?,?,?,?)";
 	
+	
+	StringBuffer stringBuffer = new StringBuffer();
+	
 	try{
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
 		System.out.println(user.getUsername());
 		preparedStatement.setString(1,user.getUsername());
-		preparedStatement.setString(2,user.getPassword());
+		if(user.getUsername().isEmpty()){
+			stringBuffer.append("Missing Username ");
+		}
+		else{
+			preparedStatement.setString(1,user.getUsername());
+			}
+		if(stringBuffer.length()>0){
+			stringBuffer.append(",");
+		}
+		if(user.getPassword().isEmpty()){
+			stringBuffer.append("Missing Password ");
+		}
+		else
+		{
+			preparedStatement.setString(2,user.getPassword());
+		}
 		preparedStatement.setString(3,user.getGender());
 		preparedStatement.setString(4,user.getType());
 		preparedStatement.setString(5,user.getStreet());
 		preparedStatement.setString(6,user.getCity());
 		preparedStatement.setString(7,user.getState());
+		//System.out.println("zip code "+user.getZip());
 		preparedStatement.setInt(8,user.getZip());	
 		preparedStatement.executeUpdate();
 		
 		user1 = CheckUser(user);
+		if(user1==null)
+		{
+			System.out.println("reg failed");
+			return stringBuffer.append("Registration failed");
+		}
 	  
 	}
 	catch(Exception e){
 		
 		System.out.println(e.toString());
+		stringBuffer.append("Registration failed");
 	}
 	finally{
 		try {
@@ -93,7 +120,7 @@ public User RegisterUser(User user){
 			e.printStackTrace();
 		}
 		finally{
-			return user1;
+			return stringBuffer;
 		}
 	}
 }

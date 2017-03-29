@@ -110,6 +110,6 @@ body {
             </center>
         </form>
 </div>
-<div>${message}</div>
+<div style="margin-left: 501px;margin-top: 10px;color: red;">${message}</div>
 </body>
 </html>

@@ -56,8 +56,10 @@ package com.accidentanalysis.Models;
 			return zip;
 		}
 
-		public void setZip(int zip) {
-			this.zip = zip;
+		public void setZip(String zip) {
+			if(!zip.isEmpty()){
+			this.zip = Integer.parseInt(zip);
+			}
 		}
 
 		public int getId() {
