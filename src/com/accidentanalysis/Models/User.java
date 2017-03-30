@@ -4,6 +4,8 @@ package com.accidentanalysis.Models;
 	public class User {
 	    private int id;
 	    private String username;
+	    private String firstname;
+	    private String lastname;
 	    private String password;
 	    private String gender;
 	    private String type;
@@ -11,6 +13,23 @@ package com.accidentanalysis.Models;
 	    private String city;
 	    private String state;
 	    private int zip;
+	    
+	    public String getFirstname() {
+			return firstname;
+		}
+
+		public void setFirstname(String firstname) {
+			this.firstname = firstname;
+		}
+
+		public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+
 
 	    public String getGender() {
 			return gender;

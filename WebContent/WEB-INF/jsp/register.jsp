@@ -56,8 +56,16 @@ body {
                     </tr>
                 </thead>
                 <tbody>
+                	 <tr>
+                        <td>First Name *</td>
+                        <td><input class="form-control" type="text" name="firstname" value="" th:field="*{firstname}"/></td>
+                    </tr>
+                     <tr>
+                        <td>Last Name *</td>
+                        <td><input class="form-control" type="text" name="lastname" value="" th:field="*{lastname}"/></td>
+                    </tr>
                     <tr>
-                        <td>User Name *</td>
+                        <td>Choose User Name *</td>
                         <td><input class="form-control" type="text" name="username" value="" th:field="*{username}"/></td>
                     </tr>
                     <tr>
@@ -77,7 +85,7 @@ body {
                         <td>Type</td>
                        <td>
                          <select class="form-control" name ="type" value = "" th:field="*{type}" >
-   							 <option value="Transport Official">TransportOfficial</option>
+   							 <option value="Transport official">TransportOfficial</option>
    							 <option value="Civilian">User</option>
  						</select>
  						</td>

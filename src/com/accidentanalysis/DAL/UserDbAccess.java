@@ -38,7 +38,10 @@ public User CheckUser(User user){
 		      	user1.setCity(rset.getString(6));
 		      	user1.setState(rset.getString(7));
 		      	user1.setZip(rset.getString(8));
-		      	user1.setUsername(rset.getString(9));
+		      	user1.setFirstname(rset.getString(9));
+		      	user1.setLastname(rset.getString(10));
+		      	user1.setUsername(rset.getString(11));
+		      	
 		     }
 		}
 		catch(Exception e){
@@ -64,8 +67,8 @@ public StringBuffer RegisterUser(User user){
 	Connection connection = DBConnect.getConnection();
 		
 	String insertTableSQL = "INSERT INTO PEOPLE"
-			+ "(NAME,Password,Gender,Type,Street,City,State,Zip) VALUES"
-			+ "(?,?,?,?,?,?,?,?)";
+			+ "(USER_NAME,Password,Gender,Type,Street,City,State,Zip,First_name,Last_Name) VALUES"
+			+ "(?,?,?,?,?,?,?,?,?,?)";
 	
 	
 	StringBuffer stringBuffer = new StringBuffer();
@@ -97,9 +100,25 @@ public StringBuffer RegisterUser(User user){
 		preparedStatement.setString(6,user.getCity());
 		preparedStatement.setString(7,user.getState());
 		//System.out.println("zip code "+user.getZip());
-		preparedStatement.setInt(8,user.getZip());	
+		preparedStatement.setInt(8,user.getZip());
+		if(user.getFirstname().isEmpty()){
+			stringBuffer.append("Missing First Name");
+		}
+		else
+		{
+			preparedStatement.setString(9,user.getFirstname());
+		}
+		if(user.getLastname().isEmpty()){
+			stringBuffer.append("Missing Last Name");
+		}
+		else
+		{
+			preparedStatement.setString(10,user.getLastname());
+		}
+		
 		preparedStatement.executeUpdate();
 		
+		connection.close();
 		user1 = CheckUser(user);
 		if(user1==null)
 		{
@@ -115,7 +134,9 @@ public StringBuffer RegisterUser(User user){
 	}
 	finally{
 		try {
+			if(!connection.isClosed()){
 			connection.close();
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
