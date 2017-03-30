@@ -74,10 +74,13 @@ body {
                     </tr>
                 </tbody>
             </table>
+            <div style="margin-left: -27px;margin-top: -16px;color: red;width: -moz-max-content;">${message}</div>
             </div>
             <div class="col-xs-4"></div>
+          
         </form>
+      
 </div>
-<div style="margin-left: 501px;margin-top: 10px;color: red;">${message}</div>
+
 </body>
 </html>
