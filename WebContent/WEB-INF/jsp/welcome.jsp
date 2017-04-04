@@ -124,7 +124,8 @@ body {
                 <div class="row">
                     <div class="col-lg-12">
                      <div class="animate-if" ng-if="showDiv==1" ng-controller="safeNavigationController">
-                     	
+                     		
+                     		<div id="map"></div>
                      
                      </div>
   					<div class="animate-if" ng-if="showDiv==2" ng-controller="accidentPredictionController"><b>City List:</b>
@@ -216,5 +217,9 @@ body {
     </div>
     <!-- /#wrapper -->
  
-	
+	-->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyhMnyMaiJeOXb7flbK2NDs__m7zygWhw&callback=initMap">
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 </body>

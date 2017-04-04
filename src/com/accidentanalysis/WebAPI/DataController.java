@@ -43,7 +43,19 @@ public String getTrendAnalysis()
 	  	return g.toJson(trends);  
 }  
 	
-  
+@RequestMapping(value = "/getMapLocations", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getMapLocations()  
+{ 
+	List<MapLocation> locations;
+	
+	locations = new APIDBAccess().GetMapLocationData();
+	
+	  
+	Gson g = new Gson(); 	
+	
+	return g.toJson(locations);  
+	
+}
    
   
 

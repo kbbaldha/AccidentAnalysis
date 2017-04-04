@@ -25,5 +25,13 @@ myApp.service('DataService', function($http) {
     	
     	return promise;
     }
+    this.getMapLocations = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getMapLocations"
+        });
+    	
+    	return promise;
+    }
     
 });
