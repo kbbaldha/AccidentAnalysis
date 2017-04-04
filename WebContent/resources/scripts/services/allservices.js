@@ -26,4 +26,17 @@ myApp.service('DataService', function($http) {
     	return promise;
     }
     
+this.reportIncidents = function(incident){
+	
+  // var jsonData = JSON.Stringfy(incident);
+   alert("inside report incidents promise");
+    	var promise = $http({
+            method : "POST",
+            url : "/AccidentAnalysis/api/report",
+            data:incident,
+            headers: {'Content-Type': 'application/json'}
+        });
+    	return promise;
+    }
+    
 });

@@ -2,11 +2,13 @@ package com.accidentanalysis.WebAPI;
 
 
 import java.util.ArrayList;  
-import java.util.List;  
+import java.util.List;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;  
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;  
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.accidentanalysis.DAL.*;
 import com.accidentanalysis.Models.*;
@@ -43,7 +45,14 @@ public String getTrendAnalysis()
 	  	return g.toJson(trends);  
 }  
 	
-  
+@RequestMapping(value = "/report", method = RequestMethod.POST,headers="Accept=application/json")  
+public String reportIncidents(@RequestBody Incident incident)  
+{  
+		System.out.println("in report API Call" +incident.getReporterid());
+        String message = new IncidentDBAccess().reportIncident(incident).toString();
+        System.out.println("Error after DB Access try" + message);
+	  	return null;  
+}  
    
   
 

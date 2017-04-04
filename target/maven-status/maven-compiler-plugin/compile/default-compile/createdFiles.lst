@@ -2,7 +2,7 @@ com/accidentanalysis/Models/Trend.class
 com/accidentanalysis/DAL/APIDBAccess.class
 com/accidentanalysis/Models/Incident.class
 com/accidentanalysis/WebAPI/CountryController.class
-com/accidentanalysis/controller/DashboardController.class
+com/accidentanalysis/WebAPI/IncidentController.class
 com/accidentanalysis/controller/HomeController.class
 com/accidentanalysis/Models/City.class
 com/accidentanalysis/Models/User.class
