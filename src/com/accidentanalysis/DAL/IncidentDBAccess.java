@@ -119,6 +119,9 @@ public class IncidentDBAccess {
 				e.printStackTrace();
 			}
 			finally{
+				if(stringBuffer.length()==0){
+					stringBuffer.append("Incident reported successfully");
+				}
 				return stringBuffer;
 			}
 		}

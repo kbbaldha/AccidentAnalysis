@@ -51,7 +51,10 @@ public String reportIncidents(@RequestBody Incident incident)
 		System.out.println("in report API Call" +incident.getReporterid());
         String message = new IncidentDBAccess().reportIncident(incident).toString();
         System.out.println("Error after DB Access try" + message);
-	  	return null;  
+        Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(message); 
+	  	  
 }  
    
   

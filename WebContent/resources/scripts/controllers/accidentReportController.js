@@ -16,8 +16,7 @@ myApp.controller('accidentReportController',  function($scope,DataService) {
 	
 	
 	$scope.submit= function(data){
-//		console.log($scope.$parent.loader.loading);
-		//$scope.$parent.loader.loading = true;
+
 		$scope.incident = {};
 		$scope.incident.reporterid = $scope.reporterid;
 		$scope.incident.numofteammambers = $scope.numofteammembers;
@@ -28,17 +27,21 @@ myApp.controller('accidentReportController',  function($scope,DataService) {
 		alert($scope.incident.reporterid);
 		alert($scope.incident.numofteammambers);
 		DataService.reportIncidents($scope.incident).then(function(response){
-			//console.log($scope.$parent.loader.loading);
-			//$scope.$parent.loader.loading = false;
+			console.log(response.data);
+			alert(response.data);
 			$scope.message = response.data;
-			
+			$scope.reset();
 		},function(error){
-			$scope.$parent.loader.loading = false;
+			//$scope.$parent.loader.loading = false;
 		})
 	}
 	
 	$scope.reset = function(){
         $scope.reporterid = "";
-       
+        $scope.numofteammembers ="";
+        $scope.incidenttype="";
+        $scope.incidentsubtype="";
+        $scope.latitude="";
+        $scope.logitude="";       
      }
 });
