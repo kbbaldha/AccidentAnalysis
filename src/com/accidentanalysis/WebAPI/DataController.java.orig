@@ -48,6 +48,7 @@ public String getTrendAnalysis()
 	  	return g.toJson(trends);  
 }  
 	
+<<<<<<< HEAD
 @RequestMapping(value = "/getMapLocations", method = RequestMethod.GET,headers="Accept=application/json")  
 public String getMapLocations()  
 { 
@@ -61,14 +62,33 @@ public String getMapLocations()
 	return g.toJson(locations);  
 	
 }
-  @RequestMapping(value = "/report", method = RequestMethod.POST,headers="Accept=application/json")  
+=======
+@RequestMapping(value = "/report", method = RequestMethod.POST,headers="Accept=application/json")  
 public String reportIncidents(@RequestBody Incident incident,HttpSession session)  
 {  
 	   User user = (User)session.getAttribute("userlogin");
         String message = new IncidentDBAccess().reportIncident(incident,user).toString();
-        Gson g = new Gson(); 
-        return g.toJson(message); 	
+        Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(message); 
+	  	  
+}  
+
+@RequestMapping(value = "/getCorrelations", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getCorrelation()  
+{  
+		 
+		List<Correlation> correlations;
+		CorrelationDBAccess correlationDBAccess = new CorrelationDBAccess();
+		
+		correlations = correlationDBAccess.GetCorrelationData();
+		System.out.println("get correlations");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(correlations);  
 } 
+>>>>>>> dev-namitha
+   
 @RequestMapping(value = "/getPrediction", method = RequestMethod.GET,headers="Accept=application/json")  
 public String getPrediction()  
 {  
@@ -120,22 +140,7 @@ public String getTableData()
 	 Gson g = new Gson(); 	
 	  	
 	 return g.toJson(tables);  
-
-}  
-
-@RequestMapping(value = "/getCorrelations", method = RequestMethod.GET,headers="Accept=application/json")  
-public String getCorrelation()  
-{  
-		 
-		List<Correlation> correlations;
-		CorrelationDBAccess correlationDBAccess = new CorrelationDBAccess();
-		
-		correlations = correlationDBAccess.GetCorrelationData();
-		System.out.println("get correlations");
-	  	Gson g = new Gson(); 	
-	  	
-	  	return g.toJson(correlations);  
-} 
+}
 
 
 

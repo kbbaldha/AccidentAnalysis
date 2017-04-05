@@ -5,12 +5,19 @@ myApp.controller('accidentPredictionController',  function($scope,DataService) {
 	
   		if(value == 2){
   			
-  			$scope.getCities();
+  			$scope.getPrediction();
   		}
   		
   	});
   	
   	
+  	
+  	$scope.getPrediction = function(){
+  		DataService.getPrediction().then(function(response){
+  			console.log(response);
+  			
+  		},function(err){console.log(err)});
+  	}
   	
   	$scope.getCities = function(){
   		//console.log($scope.$parent.loader.loading);

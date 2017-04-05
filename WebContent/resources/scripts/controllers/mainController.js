@@ -21,3 +21,23 @@ myApp.controller('mainController',  function($scope, DataService) {
 	  console.log('changed');
   })
 });
+
+
+myApp.controller('tableDataController',  function($scope, DataService) {
+	$scope.$parent.$watch('showDiv', function(value){
+			
+			if(value == 7){
+				
+				$scope.getTableData();
+			}
+			
+		});
+	
+	$scope.getTableData = function(){
+		DataService.getTableData().then(function(response){
+			//console.log(response.data);
+			$scope.tables = response.data;
+			$scope.total = $scope.tables[$scope.tables.length - 1];
+		});
+	}
+});

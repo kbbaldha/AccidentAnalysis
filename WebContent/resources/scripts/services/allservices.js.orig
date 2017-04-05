@@ -37,6 +37,17 @@ this.getTrendAnalysis = function(){
     	
     	return promise;
 }
+    
+this.reportIncidents = function(incident){
+       	var promise = $http({
+            method : "POST",
+            url : "/AccidentAnalysis/api/report",
+            data:incident,
+            headers: {'Content-Type': 'application/json'}
+        });
+    	return promise;
+    }
+<<<<<<< HEAD
     this.getMapLocations = function(){
     	var promise = $http({
             method : "GET",
@@ -53,16 +64,6 @@ this.getTrendAnalysis = function(){
     	
     	return promise;
     }
-    this.reportIncidents = function(incident){
-       	var promise = $http({
-            method : "POST",
-            url : "/AccidentAnalysis/api/report",
-            data:incident,
-            headers: {'Content-Type': 'application/json'}
-        });
-    	return promise;
-    }
-
     this.getAvgDays = function(username){
     	var promise = $http({
             method : "GET",
@@ -80,4 +81,9 @@ this.getTrendAnalysis = function(){
     	
     	return promise;
     }
+=======
+
+
+    
+>>>>>>> dev-namitha
 });
