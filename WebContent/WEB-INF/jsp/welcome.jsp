@@ -151,7 +151,7 @@ body {
 							<form name="incident" novalidate>
 								<center>
 									<div class="col-xs-3"></div>
-									<div class="col-xs-3">
+									<div class="col-xs-5">
 										<table  class="table">
 											<thead>
 												<tr>
@@ -159,11 +159,6 @@ body {
 												</tr>
 											</thead>
 											<tbody>
-											<tr>
-												<td>Investigator Id *</td>
-												<td><input name="reporterid" type="text"
-													ng-model="reporterid" required></td>
-											</tr>
 											<tr>
 												<td>No of team members *</td>
 												<td><input name="numofteammembers" type="text"

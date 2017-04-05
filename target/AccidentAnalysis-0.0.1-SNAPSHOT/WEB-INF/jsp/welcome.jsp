@@ -145,84 +145,91 @@ body {
 
 							</div>
 						</div>
-						<div ng-if="showDiv==5" ng-controller="investigationReportController">{{name}}</div>
+						<div ng-if="showDiv==5"
+							ng-controller="investigationReportController">{{name}}</div>
 						<div ng-if="showDiv==6" ng-controller="accidentReportController">
-							<div class="col-xs-3"></div>
-							<div class="col-xs-6">
-								<form name="incident" novalidate>
-									<table border="0">
-										<tr>
-											<td>Investigator's Id *</td>
-											<td><input name="reporterid" type="text"
-												ng-model="reporterid" required></td>
-										</tr>
-										<tr>
-											<td>Number of team mambers *</td>
-											<td><input name="numofteammembers" type="text"
-												ng-model="numofteammembers" required></td>
-										</tr>
+							<form name="incident" novalidate>
+								<center>
+									<div class="col-xs-3"></div>
+									<div class="col-xs-5">
+										<table  class="table">
+											<thead>
+												<tr>
+													<th colspan="2">Report Incident here</th>
+												</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<td>No of team members *</td>
+												<td><input name="numofteammembers" type="text"
+													ng-model="numofteammembers" required></td>
+											</tr>
 
-										<tr>
-											<td>Incident Type * <select name="incidenttype" value=""
-												ng-model="incidenttype" required>
-													<option value="roadwork">roadwork</option>
-													<option value="disasters">disasters</option>
-													<option value="precipitation">precipitation</option>
-													<option value="trafficConditions">trafficConditions</option>
-													<option value="obstruction">obstruction</option>
-													<option value="accidentsAndIncidents">accidentsAndIncidents</option>
-											</select>
-											</td>
-										</tr>
+											<tr>
+												<td>Incident Type *</td>
+												<td><select name="incidenttype" value=""
+													ng-model="incidenttype" required>
+														<option value="roadwork">roadwork</option>
+														<option value="disasters">disasters</option>
+														<option value="precipitation">precipitation</option>
+														<option value="trafficConditions">trafficConditions</option>
+														<option value="obstruction">obstruction</option>
+														<option value="accidentsAndIncidents">accidentsAndIncidents</option>
+												</select></td>
+											</tr>
 
-										<tr>
-											<td>Incident Cause * <select name="incidentsubtype"
-												value="" ng-model="incidentsubtype" required>
-													<option value="road construction">road
-														construction</option>
-													<option value="road maintenance operations">road
-														maintenance operations</option>
-													<option value="major flood">major flood</option>
-													<option value="vehicle on fire">vehicle on fire</option>
-													<option value="snow">snow</option>
-													<option value="incident">incident</option>
-													<option value="debris on roadway">debris on
-														roadway</option>
-													<option value="disabled vehicle">disabled vehicle</option>
-													<option value="accident">accident</option>
-													<option value="traffic congestion">traffic
-														congestion</option>
-											</select>
-											</td>
-										</tr>
+											<tr>
+												<td>Incident Cause *</td>
+												<td><select name="incidentsubtype" value=""
+													ng-model="incidentsubtype" required>
+														<option value="road construction">road
+															construction</option>
+														<option value="road maintenance operations">road
+															maintenance operations</option>
+														<option value="major flood">major flood</option>
+														<option value="vehicle on fire">vehicle on fire</option>
+														<option value="snow">snow</option>
+														<option value="incident">incident</option>
+														<option value="debris on roadway">debris on
+															roadway</option>
+														<option value="disabled vehicle">disabled vehicle</option>
+														<option value="accident">accident</option>
+														<option value="traffic congestion">traffic
+															congestion</option>
+												</select></td>
+											</tr>
 
-										<tr>
-											<td>Latitude</td>
-											<td><input type="text" name="latitude" value=""
-												ng-model="latitude" /></td>
-										</tr>
-										<tr>
-											<td>Longitude</td>
-											<td><input type="text" name="longitude" value=""
-												ng-model="logitude" /></td>
-										</tr>
+											<tr>
+												<td>Latitude</td>
+												<td><input type="text" name="latitude" value=""
+													ng-model="latitude" /></td>
+											</tr>
+											<tr>
+												<td>Longitude</td>
+												<td><input type="text" name="longitude" value=""
+													ng-model="logitude" /></td>
+											</tr>
 
-										<tr>
-											<td>
-												<button ng-click="reset()">Reset</button>
-											</td>
-											<td>
-												<button ng-click="submit()">Submit</button>
-											</td>
-										</tr>
-									</table>
-								</form>
-							</div>
+											<tr>
+												<td>
+													<button ng-click="reset()">Reset</button>
+												</td>
+												<td>
+													<button ng-click="submit()">Submit</button>
+												</td>
+											</tr>
+											</tbody>
+										</table>
+										<div style="margin-left: -27px; margin-top: 20px; color: red;">{{message}}</div>
+									</div>
+							</form>
+							
 						</div>
 					</div>
 				</div>
-				<!-- /#page-content-wrapper -->
-
 			</div>
-			<!-- /#wrapper -->
+			<!-- /#page-content-wrapper -->
+
+		</div>
+		<!-- /#wrapper -->
 </body>

@@ -120,7 +120,19 @@ public StringBuffer RegisterUser(User user){
 		
 		connection.close();
 		user1 = CheckUser(user);
-		if(user1==null)
+		user.setId(user1.getId());
+		System.out.println("user id " + user.getId());
+		boolean user2;
+		if(user.getType().equalsIgnoreCase("Transport official")){
+			int roleId = user.getRole();
+			System.out.println("Role id " + roleId);
+			user2 = RegisterTransportOfficial(user,roleId);
+		}
+		else
+		{
+			user2 = RegisterCivilian(user);
+		}
+		if(user1==null||user2==false)
 		{
 			System.out.println("reg failed");
 			return stringBuffer.append("Registration failed");
@@ -146,6 +158,96 @@ public StringBuffer RegisterUser(User user){
 			return stringBuffer;
 		}
 	}
+}
+
+public boolean RegisterTransportOfficial(User user,int roleId){
+	
+	Connection connection = DBConnect.getConnection();
+		
+	String insertTableSQL = "insert into TRANSPORT_OFFICIAL (USER_ID_FK,ROLE_ID_FK) values"+
+	"(?,?)";
+	
+	
+	StringBuffer stringBuffer = new StringBuffer();
+	
+	try{
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
+		System.out.println(user.getUsername());
+		preparedStatement.setInt(1,user.getId());
+		preparedStatement.setInt(2,roleId);
+		
+		preparedStatement.executeUpdate();
+		
+		connection.close();	
+		return true;
+	  
+	}
+	catch(Exception e){
+		
+		System.out.println(e.toString());
+		stringBuffer.append("Inserting transport Official failed");
+		System.out.println(stringBuffer.toString());
+	}
+	finally{
+		try {
+			if(!connection.isClosed()){
+			connection.close();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	return false;
+}
+public boolean RegisterCivilian(User user){
+	
+	Connection connection = DBConnect.getConnection();
+		
+	String insertTableSQL = "insert into civilian (USER_ID_FK,OCCUPATION) values"+
+	"(?,?)";
+	
+	
+	StringBuffer stringBuffer = new StringBuffer();
+	
+	try{
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
+		System.out.println(user.getUsername());
+		preparedStatement.setInt(1,user.getId());
+		preparedStatement.setString(2,user.getPassword());
+				
+		preparedStatement.executeUpdate();
+		
+		connection.close();	
+		return true;
+	  
+	}
+	catch(Exception e){
+		
+		System.out.println(e.toString());
+		stringBuffer.append("User/Civilian registration failed");
+		
+	}
+	finally{
+		try {
+			if(!connection.isClosed()){
+			connection.close();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return false;
+		}
+	}
+	
+	
 }
 
 }

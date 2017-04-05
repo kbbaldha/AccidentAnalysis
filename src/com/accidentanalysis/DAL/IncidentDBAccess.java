@@ -17,7 +17,7 @@ public class IncidentDBAccess {
 
 	}
 	
-	public StringBuffer reportIncident(Incident incident){
+	public StringBuffer reportIncident(Incident incident,User user){
 		
 		System.out.println("inside db Access function" + incident.getReporterid());
 		
@@ -36,19 +36,15 @@ public class IncidentDBAccess {
 		StringBuffer stringBuffer = new StringBuffer();
 		
 		try{
-			
+			System.out.println("user id from sessio" + user.getId());
 			PreparedStatement preparedStatementIncident = connection.prepareStatement(insertIntoIncident);
 			PreparedStatement preparedStatementInvestigation = connection.prepareStatement(insertIntoInvetigation);
 			
 			System.out.println("reporter id "+incident.getReporterid());
-			if(incident.getReporterid()<=0){
-				System.out.println("reporter id "+incident.getReporterid());
-				stringBuffer.append("Missing Reporter Id ");
-			}
-			else{
-				preparedStatementIncident.setInt(1,incident.getReporterid());
-				preparedStatementInvestigation.setInt(1,incident.getReporterid());
-				}
+			
+				preparedStatementIncident.setInt(1,user.getId());
+				preparedStatementInvestigation.setInt(1,user.getId());
+				
 			
 			System.out.println("event id "+incident.getEventtype());
 			if(incident.getEventtype().isEmpty()){
@@ -120,7 +116,7 @@ public class IncidentDBAccess {
 			}
 			finally{
 				if(stringBuffer.length()==0){
-					stringBuffer.append("Incident reported successfully");
+					stringBuffer.append("Incident reported successfully"+ user.getId());
 				}
 				return stringBuffer;
 			}

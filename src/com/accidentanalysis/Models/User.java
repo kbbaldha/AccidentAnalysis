@@ -9,7 +9,25 @@ package com.accidentanalysis.Models;
 	    private String password;
 	    private String gender;
 	    private String type;
-	    private String street;
+	    private String role;
+	    private String job; 
+	    public String getJob() {
+			return job;
+		}
+
+		public void setJob(String job) {
+			this.job = job;
+		}
+
+		public int getRole() {
+			return Integer.parseInt(role);
+		}
+
+		public void setRole(String role) {
+			this.role = role;
+		}
+
+		private String street;
 	    private String city;
 	    private String state;
 	    private int zip;

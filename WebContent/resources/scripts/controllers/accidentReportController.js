@@ -18,7 +18,6 @@ myApp.controller('accidentReportController',  function($scope,DataService) {
 	$scope.submit= function(data){
 
 		$scope.incident = {};
-		$scope.incident.reporterid = $scope.reporterid;
 		$scope.incident.numofteammambers = $scope.numofteammembers;
 		$scope.incident.eventtype = $scope.incidenttype;
 		$scope.incident.eventsubtype = $scope.incidentsubtype;

@@ -4,6 +4,8 @@ package com.accidentanalysis.WebAPI;
 import java.util.ArrayList;  
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;  
 import org.springframework.web.bind.annotation.RequestMapping;  
@@ -46,10 +48,11 @@ public String getTrendAnalysis()
 }  
 	
 @RequestMapping(value = "/report", method = RequestMethod.POST,headers="Accept=application/json")  
-public String reportIncidents(@RequestBody Incident incident)  
+public String reportIncidents(@RequestBody Incident incident,HttpSession session)  
 {  
 		System.out.println("in report API Call" +incident.getReporterid());
-        String message = new IncidentDBAccess().reportIncident(incident).toString();
+		User user = (User)session.getAttribute("userlogin");
+        String message = new IncidentDBAccess().reportIncident(incident,user).toString();
         System.out.println("Error after DB Access try" + message);
         Gson g = new Gson(); 	
 	  	
