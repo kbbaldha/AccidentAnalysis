@@ -83,11 +83,11 @@ public class APIDBAccess {
 				
 				for(Object attribute : row.getAttributes()) {				
 					System.out.println(metaData.getColumnName(idx) + " = " + attribute);
-					if(metaData.getColumnName(idx) == "A"){
-						td.noOfAccidents = (int) attribute;
+					if(metaData.getColumnName(idx).equals("A")){
+						td.noOfAccidents = Integer.parseInt(attribute.toString());
 					}
-					else if(metaData.getColumnName(idx) == "yr"){
-						td.month = (int) attribute;
+					else if(metaData.getColumnName(idx).equals("YR")){
+						td.month = Integer.parseInt(attribute.toString());
 					}
 					++idx;
 					
