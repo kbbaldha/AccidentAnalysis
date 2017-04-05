@@ -50,10 +50,8 @@ public String getTrendAnalysis()
 @RequestMapping(value = "/report", method = RequestMethod.POST,headers="Accept=application/json")  
 public String reportIncidents(@RequestBody Incident incident,HttpSession session)  
 {  
-		System.out.println("in report API Call" +incident.getReporterid());
-		User user = (User)session.getAttribute("userlogin");
+	   User user = (User)session.getAttribute("userlogin");
         String message = new IncidentDBAccess().reportIncident(incident,user).toString();
-        System.out.println("Error after DB Access try" + message);
         Gson g = new Gson(); 	
 	  	
 	  	return g.toJson(message); 

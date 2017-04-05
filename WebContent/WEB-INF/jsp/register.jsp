@@ -101,31 +101,23 @@ body {
 							</select></td>
 						</tr>
 						<tr>
-							 <td>Type</td>
-							<!-- <td><select class="form-control" name="type" value=""
-								th:field="*{type}">
-									<option value="Transport official">TransportOfficial</option>
-									<option value="Civilian">User</option>
-							</select></td>-->
-							<td>
-							<input type="radio" name="type" value="Transport official"
-								id="individual_form" style="margin: 0px !important"
+							<td>Type *</td>
+							<td><input type="radio" name="type"
+								value="Transport official" id="individual_form"
+								style="margin: 0px !important"
 								onchange="onchange_handler(this, 'transport');"
-								onmouseup="onchange_handler(this, 'transport');">
-							<strong>Transport Official</strong>
-
-							<input type="radio" name="type" value="Civilian"
+								onmouseup="onchange_handler(this, 'transport');"> 
+								<strong>Transport Official</strong> 
+								<input type="radio" name="type" value="Civilian"
 								id="corporation_form" style="margin: 0px !important"
 								onchange="onchange_handler(this, 'user');"
-								onmouseup="onchange_handler(this, 'user');">
-							<strong>User</strong>
+								onmouseup="onchange_handler(this, 'user');"> 
+								<strong>User</strong>
 							</td>
 						</tr>
-					<!-- <div id="transport_form_fields" style="display: none;">-->
-						<tr id="transport_form_fields" style="display: none;">
-							<td>Role</td>
-							<td><select class="form-control" name="role" value=""
-								th:field="role">
+							<tr id="transport_form_fields" style="display: none;">
+							<td>Role *</td>
+							<td><select class="form-control" name="role" value="" th:field="role">
 									<option value="1">Accident Investigator</option>
 									<option value="2">Accident Lead</option>
 									<option value="3">Data Entry Official</option>
@@ -148,13 +140,13 @@ body {
 									<option value="20">Support Official</option>
 							</select></td>
 						</tr>
-						
+
 						<tr id="user_form_fields" style="display: none;">
-							<td>Job Desc</td>
+							<td>Job Desc *</td>
 							<td><input class="form-control" type="text" name="job"
-								value="" th:field="*{role}" /></td>
+								value="" th:field="*{job}" /></td>
 						</tr>
-						
+
 						<tr>
 							<td>Street</td>
 							<td><input class="form-control" type="text" name="street"
@@ -182,8 +174,7 @@ body {
 								style="margin-right: 10px" /><input type="reset" value="Reset" /></td>
 						</tr>
 						<tr>
-							<td colspan="2">Returning user ? <a href="login.html">Login
-									Here</a></td>
+							<td colspan="2">Returning user ? <a href="login.html">Login Here</a></td>
 						</tr>
 					</tbody>
 				</table>

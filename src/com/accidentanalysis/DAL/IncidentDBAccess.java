@@ -19,9 +19,6 @@ public class IncidentDBAccess {
 	
 	public StringBuffer reportIncident(Incident incident,User user){
 		
-		System.out.println("inside db Access function" + incident.getReporterid());
-		
-
 		Connection connection = DBConnect.getConnection();
 				
 		String insertIntoIncident = "INSERT INTO incident"
@@ -36,25 +33,18 @@ public class IncidentDBAccess {
 		StringBuffer stringBuffer = new StringBuffer();
 		
 		try{
-			System.out.println("user id from sessio" + user.getId());
 			PreparedStatement preparedStatementIncident = connection.prepareStatement(insertIntoIncident);
 			PreparedStatement preparedStatementInvestigation = connection.prepareStatement(insertIntoInvetigation);
-			
-			System.out.println("reporter id "+incident.getReporterid());
 			
 				preparedStatementIncident.setInt(1,user.getId());
 				preparedStatementInvestigation.setInt(1,user.getId());
 				
-			
-			System.out.println("event id "+incident.getEventtype());
 			if(incident.getEventtype().isEmpty()){
-				System.out.println("event id "+incident.getEventtype());
 				stringBuffer.append("Missing Incident Type ");
 			}
 			else{
 				preparedStatementIncident.setString(2,incident.getEventtype());
 				}
-			System.out.println("event subType "+incident.getEventsubtype());
 			if(incident.getEventsubtype().isEmpty()){
 				stringBuffer.append("Missing Incident cause ");
 			}
@@ -65,7 +55,6 @@ public class IncidentDBAccess {
 			
 			Timestamp timestamp = getCurrentTimeStamp();
 		   preparedStatementIncident.setTimestamp(4,timestamp);
-		   System.out.println("latitude "+incident.getLatitude());
 			if(incident.getLatitude()==0){
 				stringBuffer.append("Missing Latitude ");
 			}
@@ -73,7 +62,6 @@ public class IncidentDBAccess {
 			{
 				preparedStatementIncident.setFloat(5,incident.getLatitude());
 			}
-			System.out.println("longitude "+incident.getLongitude());
 			if(incident.getLongitude()==0){
 				stringBuffer.append("Missing Longitude ");
 			}
@@ -82,7 +70,6 @@ public class IncidentDBAccess {
 				preparedStatementIncident.setFloat(6,incident.getLongitude());
 			}
 			
-			System.out.println("num of team mem"+incident.getNumofteammambers());
 			if(incident.getNumofteammambers()==0){
 				stringBuffer.append("Missing number of team members ");
 			}
@@ -116,7 +103,7 @@ public class IncidentDBAccess {
 			}
 			finally{
 				if(stringBuffer.length()==0){
-					stringBuffer.append("Incident reported successfully"+ user.getId());
+					stringBuffer.append("Incident reported successfully");
 				}
 				return stringBuffer;
 			}

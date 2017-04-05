@@ -72,7 +72,6 @@ public TransportOfficial checkTransportOfficial(User user){
 	    while (rset.next())
 	    {		     
 	      	user1 = new TransportOfficial();
-	      	System.out.println("useridfk in trans offcial check"+ rset.getInt(1));
 	      	user1.setUseridfk(rset.getInt(1));
 	      	user1.setRoleid(rset.getInt(2));  	
 	      	
@@ -203,7 +202,6 @@ public StringBuffer RegisterUser(User user){
 		}
 		if(user1==null||user2==null)
 		{
-			System.out.println("reg failed");
 			return stringBuffer.append("Registration failed");
 		}
 	  
@@ -261,7 +259,6 @@ public String RegisterTransportOfficial(User user,int roleId){
 		
 		System.out.println(e.toString());
 		stringBuffer.append("Inserting transport Official failed");
-		System.out.println(stringBuffer.toString());
 	}
 	finally{
 		try {
