@@ -1,4 +1,5 @@
 com/accidentanalysis/Models/Trend.class
+com/accidentanalysis/Models/TransportOfficial.class
 com/accidentanalysis/DAL/APIDBAccess.class
 com/accidentanalysis/Models/Incident.class
 com/accidentanalysis/WebAPI/CountryController.class
@@ -11,5 +12,6 @@ com/accidentanalysis/DAL/QueryResult.class
 com/accidentanalysis/DAL/DBConnect.class
 com/accidentanalysis/WebAPI/DataController.class
 com/accidentanalysis/DAL/IncidentDBAccess.class
+com/accidentanalysis/Models/Civilian.class
 com/accidentanalysis/DAL/TestDBData.class
 com/accidentanalysis/WebAPI/Country.class

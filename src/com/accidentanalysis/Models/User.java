@@ -9,8 +9,13 @@ package com.accidentanalysis.Models;
 	    private String password;
 	    private String gender;
 	    private String type;
-	    private String role;
+	    private int role;
 	    private String job; 
+		private String street;
+	    private String city;
+	    private String state;
+	    private int zip;
+	    
 	    public String getJob() {
 			return job;
 		}
@@ -20,17 +25,15 @@ package com.accidentanalysis.Models;
 		}
 
 		public int getRole() {
-			return Integer.parseInt(role);
+			return role;
 		}
 
 		public void setRole(String role) {
-			this.role = role;
+			if(!role.isEmpty()){
+			this.role = Integer.parseInt(role);
+			}
 		}
-
-		private String street;
-	    private String city;
-	    private String state;
-	    private int zip;
+	
 	    
 	    public String getFirstname() {
 			return firstname;

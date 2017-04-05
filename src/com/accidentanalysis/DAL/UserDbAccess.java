@@ -10,6 +10,8 @@ import java.util.List;
 import org.springframework.web.servlet.config.annotation.RedirectViewControllerRegistration;
 
 import com.accidentanalysis.Models.City;
+import com.accidentanalysis.Models.Civilian;
+import com.accidentanalysis.Models.TransportOfficial;
 import com.accidentanalysis.Models.User;
 
 public class UserDbAccess {
@@ -24,10 +26,7 @@ public User CheckUser(User user){
 			QR = DBConnect.ExecuteQuery("select * from PEOPLE where lower(user_name) = lower('"+ user.getUsername()+"') and password = '"+ user.getPassword()+"'");
 		    ResultSet rset = QR.resultSet;
 		    while (rset.next())
-		    { 
-		      	//System.out.println(rset.getString(2));
-		      	//System.out.println(rset.getString(3));
-		    	//User_id, password, gender, type, street, city, state, zip, first_name, last_name, user_name
+		    {		     
 		      	user1 = new User();
 		      	user1.setId(rset.getInt(1));
 		      	user1.setPassword(rset.getString(2));  	
@@ -60,6 +59,75 @@ public User CheckUser(User user){
 		return user1;
 	}
 
+public TransportOfficial checkTransportOfficial(User user){
+	
+	TransportOfficial user1 = null;
+	QueryResult QR = null;
+	
+	
+	try{
+		
+		QR = DBConnect.ExecuteQuery("select * from TRANSPORT_OFFICIAL where USER_ID_FK = "+ user.getId()+" and ROLE_ID_FK = "+ user.getRole());
+	    ResultSet rset = QR.resultSet;
+	    while (rset.next())
+	    {		     
+	      	user1 = new TransportOfficial();
+	      	System.out.println("useridfk in trans offcial check"+ rset.getInt(1));
+	      	user1.setUseridfk(rset.getInt(1));
+	      	user1.setRoleid(rset.getInt(2));  	
+	      	
+	      	
+	     }
+	}
+	catch(Exception e){
+		System.out.println(e.toString());
+	}
+	finally{
+		
+		try {
+			QR.connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	return user1;
+}
+
+public Civilian CheckCivilian(User user){
+	
+	Civilian user1 = null;
+	QueryResult QR = null;
+	
+	try{
+		
+		QR = DBConnect.ExecuteQuery("select * from Civilian where USER_ID_FK = "+ user.getId()+" and OCCUPATION = '"+ user.getJob()+"'");
+	    ResultSet rset = QR.resultSet;
+	    while (rset.next())
+	    {		     
+	      	user1 = new Civilian();
+	      	user1.setUseridfk(rset.getInt(1));
+	      	user1.setJobdesc(rset.getString(2));  	
+	     
+	     }
+	}
+	catch(Exception e){
+		System.out.println(e.toString());
+	}
+	finally{
+		
+		try {
+			QR.connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	return user1;
+}
+
 
 public StringBuffer RegisterUser(User user){
 	
@@ -76,8 +144,6 @@ public StringBuffer RegisterUser(User user){
 	try{
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
-		System.out.println(user.getUsername());
-		preparedStatement.setString(1,user.getUsername());
 		if(user.getUsername().isEmpty()){
 			stringBuffer.append("Missing Username ");
 		}
@@ -99,7 +165,6 @@ public StringBuffer RegisterUser(User user){
 		preparedStatement.setString(5,user.getStreet());
 		preparedStatement.setString(6,user.getCity());
 		preparedStatement.setString(7,user.getState());
-		//System.out.println("zip code "+user.getZip());
 		preparedStatement.setInt(8,user.getZip());
 		if(user.getFirstname().isEmpty()){
 			stringBuffer.append("Missing First Name");
@@ -121,18 +186,22 @@ public StringBuffer RegisterUser(User user){
 		connection.close();
 		user1 = CheckUser(user);
 		user.setId(user1.getId());
-		System.out.println("user id " + user.getId());
-		boolean user2;
+		String message=null;
+		Object user2;
 		if(user.getType().equalsIgnoreCase("Transport official")){
 			int roleId = user.getRole();
-			System.out.println("Role id " + roleId);
-			user2 = RegisterTransportOfficial(user,roleId);
+			message = RegisterTransportOfficial(user,roleId);
+			user2= (TransportOfficial) checkTransportOfficial(user);
 		}
 		else
 		{
-			user2 = RegisterCivilian(user);
+			message = RegisterCivilian(user);
+			user2 = (Civilian)CheckCivilian(user);
 		}
-		if(user1==null||user2==false)
+		if(message != null){
+			stringBuffer.append(message);
+		}
+		if(user1==null||user2==null)
 		{
 			System.out.println("reg failed");
 			return stringBuffer.append("Registration failed");
@@ -160,7 +229,7 @@ public StringBuffer RegisterUser(User user){
 	}
 }
 
-public boolean RegisterTransportOfficial(User user,int roleId){
+public String RegisterTransportOfficial(User user,int roleId){
 	
 	Connection connection = DBConnect.getConnection();
 		
@@ -173,14 +242,19 @@ public boolean RegisterTransportOfficial(User user,int roleId){
 	try{
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
-		System.out.println(user.getUsername());
 		preparedStatement.setInt(1,user.getId());
+		if(roleId == 0){
+			stringBuffer.append("Missing Role of Transport official");
+		}
+		else
+		{
 		preparedStatement.setInt(2,roleId);
+		}
 		
 		preparedStatement.executeUpdate();
 		
 		connection.close();	
-		return true;
+		return stringBuffer.toString();
 	  
 	}
 	catch(Exception e){
@@ -201,9 +275,9 @@ public boolean RegisterTransportOfficial(User user,int roleId){
 		}
 		
 	}
-	return false;
+	return stringBuffer.toString();
 }
-public boolean RegisterCivilian(User user){
+public String RegisterCivilian(User user){
 	
 	Connection connection = DBConnect.getConnection();
 		
@@ -216,14 +290,17 @@ public boolean RegisterCivilian(User user){
 	try{
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL);
-		System.out.println(user.getUsername());
 		preparedStatement.setInt(1,user.getId());
-		preparedStatement.setString(2,user.getPassword());
-				
+		if(user.getJob().isEmpty()){
+			stringBuffer.append("Missing job description of user");
+		}
+		else{
+		preparedStatement.setString(2,user.getJob());
+		}	
 		preparedStatement.executeUpdate();
 		
 		connection.close();	
-		return true;
+		return stringBuffer.toString();
 	  
 	}
 	catch(Exception e){
@@ -243,7 +320,7 @@ public boolean RegisterCivilian(User user){
 			e.printStackTrace();
 		}
 		finally {
-			return false;
+			return stringBuffer.toString();
 		}
 	}
 	

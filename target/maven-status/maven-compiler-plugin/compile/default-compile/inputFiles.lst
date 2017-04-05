@@ -11,5 +11,7 @@
 /home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/DAL/DBConnect.java
 /home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/controller/HomeController.java
 /home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/Models/Incident.java
+/home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/Models/Civilian.java
 /home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/Models/User.java
 /home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/WebAPI/Country.java
+/home/nammi/Course_Material/Sem_2/DBMS/DevNamitha/AccidentAnalysis/src/com/accidentanalysis/Models/TransportOfficial.java

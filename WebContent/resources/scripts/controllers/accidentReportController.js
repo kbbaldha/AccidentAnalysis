@@ -23,11 +23,7 @@ myApp.controller('accidentReportController',  function($scope,DataService) {
 		$scope.incident.eventsubtype = $scope.incidentsubtype;
 		$scope.incident.latitude = $scope.latitude;
 		$scope.incident.longitude = $scope.logitude;
-		alert($scope.incident.reporterid);
-		alert($scope.incident.numofteammambers);
 		DataService.reportIncidents($scope.incident).then(function(response){
-			console.log(response.data);
-			alert(response.data);
 			$scope.message = response.data;
 			$scope.reset();
 		},function(error){
@@ -36,7 +32,6 @@ myApp.controller('accidentReportController',  function($scope,DataService) {
 	}
 	
 	$scope.reset = function(){
-        $scope.reporterid = "";
         $scope.numofteammembers ="";
         $scope.incidenttype="";
         $scope.incidentsubtype="";
