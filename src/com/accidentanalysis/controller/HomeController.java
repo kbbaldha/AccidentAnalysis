@@ -25,7 +25,7 @@ public class HomeController {
 		/*if(null==user){
 			return new ModelAndView("login","message","Session Expired Login Again");
 		}*/
-		return new ModelAndView("welcome", "usertype",1/*user.getType()*/);
+		return new ModelAndView("welcome", "usertype","Transport official"/*user.getType()*/);
 	}
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session) {

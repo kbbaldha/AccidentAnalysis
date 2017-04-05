@@ -2,6 +2,7 @@ com\accidentanalysis\WebAPI\CountryController.class
 com\accidentanalysis\DAL\QueryResult.class
 com\accidentanalysis\WebAPI\DataController.class
 com\accidentanalysis\DAL\APIDBAccess.class
+com\accidentanalysis\Models\MapLocation.class
 com\accidentanalysis\Models\Trend.class
 com\accidentanalysis\Models\User.class
 com\accidentanalysis\DAL\TestDBData.class
@@ -10,6 +11,7 @@ com\accidentanalysis\controller\DashboardController.class
 com\accidentanalysis\DAL\IncidentDBAccess.class
 com\accidentanalysis\DAL\UserDbAccess.class
 com\accidentanalysis\controller\HomeController.class
+com\accidentanalysis\Models\SPClass.class
 com\accidentanalysis\WebAPI\Country.class
 com\accidentanalysis\Models\Incident.class
 com\accidentanalysis\DAL\DBConnect.class

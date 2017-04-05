@@ -114,6 +114,9 @@ body {
                 <li>
                     <a ng-show="'${usertype}' == 'Transport official'" ng-click="show(6)">Accident Report</a>
                 </li>
+                <li>
+                    <a ng-click="show(7)">Table Meta Data</a>
+                </li>
                </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -139,7 +142,11 @@ body {
   						
   						</div>
   					</div>
-  					<div class="animate-if" ng-if="showDiv==5" ng-controller="investigationReportController">{{name}}</div>
+  					<div class="animate-if" ng-if="showDiv==5" ng-controller="investigationReportController">
+  						Enter Username: <input class="form-control" type="text" ng-model="userName"></input>
+  						<button class"btn" ng-click="getDays()">Get Average Days</button>
+  						<p ng-show="avgDays > 0" >The avg number of days to solve incident is {{avgDays}}<p>
+  					</div>
   					<div ng-if="showDiv==6" ng-controller="accidentReportController">
   					<form  th:action="@{/report}" th:object="${incident}" method="post">
            <div class="col-xs-3"></div>
@@ -208,6 +215,25 @@ body {
             <div class="col-xs-3"></div>
          </form>
   		 </div>         
+         			<div class="animate-if" ng-if="showDiv==7" ng-controller="tableDataController">
+  						
+  						<p>The total number of rows are <b>{{total.RowCount}}</b></p>
+  						<br/>
+  						<table class="table table-condensed">
+    					<thead>
+      					<tr>
+       					 	<th>Table Name</th>
+        					<th>Row Count</th>
+     						 </tr>
+    					</thead>
+    					<tbody>
+      					<tr ng-repeat="table in tables">
+        					<td>{{table.TableName}}</td>
+        					<td>{{table.RowCount}}</td>
+      					</tr>
+      					</tbody>
+      					</table>
+  					</div>
          </div>
                 </div>
             </div>

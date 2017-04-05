@@ -79,5 +79,38 @@ public String getPrediction()
 	  	
 	  	return g.toJson(objcts);  
 } 
+@RequestMapping(value = "/getAvgDays/{UserName}", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getAvgDays(@PathVariable String UserName)  
+{
+	System.out.println(UserName);
+	 int days = 0;
+	 try{
+		 days = new APIDBAccess().GetAvgDays(UserName.trim());
+	 }
+	 catch(Exception e){
+		 days = -1;
+	 }
+	 Gson g = new Gson(); 	
+	  	
+	 return g.toJson(days);  
+}
+
+@RequestMapping(value = "/getTableData/", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getTableData()  
+{
+	//System.out.println(UserName);
+	 List<TableInfo> tables = null;
+	 try{
+		 tables = new APIDBAccess().GetTableData();
+	 }
+	 catch(Exception e){
+		 System.out.println(e.getMessage());
+	 }
+	 Gson g = new Gson(); 	
+	  	
+	 return g.toJson(tables);  
+}
+
+
 
 }  

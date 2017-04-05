@@ -41,5 +41,21 @@ myApp.service('DataService', function($http) {
     	
     	return promise;
     }
-    
+    this.getAvgDays = function(username){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getAvgDays/" + username
+        });
+    	
+    	return promise;
+
+    }
+    this.getTableData = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getTableData/"
+        });
+    	
+    	return promise;
+    }
 });
