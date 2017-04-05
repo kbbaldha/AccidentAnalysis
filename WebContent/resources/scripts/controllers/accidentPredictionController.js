@@ -19,7 +19,7 @@ myApp.controller('accidentPredictionController',  function($scope,DataService) {
   			//console.log($scope.$parent.loader.loading);
   			$scope.$parent.loader.loading = false;
   			$scope.cities = response.data;
-  			alert(response.data);
+  			//alert(response.data);
   			
   		},function(error){
   			$scope.$parent.loader.loading = false;

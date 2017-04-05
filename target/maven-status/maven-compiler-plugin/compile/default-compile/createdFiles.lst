@@ -8,10 +8,12 @@ com/accidentanalysis/controller/HomeController.class
 com/accidentanalysis/Models/City.class
 com/accidentanalysis/Models/User.class
 com/accidentanalysis/DAL/UserDbAccess.class
+com/accidentanalysis/DAL/CorrelationDBAccess.class
 com/accidentanalysis/DAL/QueryResult.class
 com/accidentanalysis/DAL/DBConnect.class
 com/accidentanalysis/WebAPI/DataController.class
 com/accidentanalysis/DAL/IncidentDBAccess.class
 com/accidentanalysis/Models/Civilian.class
+com/accidentanalysis/Models/Correlation.class
 com/accidentanalysis/DAL/TestDBData.class
 com/accidentanalysis/WebAPI/Country.class

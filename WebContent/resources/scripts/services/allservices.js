@@ -15,8 +15,20 @@ myApp.service('DataService', function($http) {
             url : "/AccidentAnalysis/api/cities"
         });
     	return promise;
-	}
-    this.getTrendAnalysis = function(){
+}
+    
+    
+this.getCorrelations = function(){
+    	
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getCorrelations"
+        });
+    	
+    	return promise;
+}    
+
+this.getTrendAnalysis = function(){
     	
     	var promise = $http({
             method : "GET",
@@ -24,7 +36,7 @@ myApp.service('DataService', function($http) {
         });
     	
     	return promise;
-    }
+}
     
 this.reportIncidents = function(incident){
        	var promise = $http({
@@ -35,5 +47,7 @@ this.reportIncidents = function(incident){
         });
     	return promise;
     }
+
+
     
 });

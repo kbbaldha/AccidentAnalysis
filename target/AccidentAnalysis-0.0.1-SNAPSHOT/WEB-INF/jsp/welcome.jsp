@@ -138,7 +138,10 @@ body {
 							<div ng-repeat="city in cities">{{city.Name}}</div>
 						</div>
 						<div class="animate-if" ng-if="showDiv==3"
-							ng-controller="correlationSpeedController">{{name}}</div>
+							ng-controller="correlationSpeedController">
+							<div id="scatterChartContainer" style="height: 300px; width: 100%;">
+							</div>
+							</div>
 						<div class="animate-if" ng-if="showDiv==4"
 							ng-controller="trendAnalysisController">
 							<div id="chartContainer" style="height: 300px; width: 100%;">

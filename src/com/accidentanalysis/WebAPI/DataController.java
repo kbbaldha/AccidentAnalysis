@@ -57,6 +57,20 @@ public String reportIncidents(@RequestBody Incident incident,HttpSession session
 	  	return g.toJson(message); 
 	  	  
 }  
+
+@RequestMapping(value = "/getCorrelations", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getCorrelation()  
+{  
+		 
+		List<Correlation> correlations;
+		CorrelationDBAccess correlationDBAccess = new CorrelationDBAccess();
+		
+		correlations = correlationDBAccess.GetCorrelationData();
+		System.out.println("get correlations");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(correlations);  
+} 
    
   
 
