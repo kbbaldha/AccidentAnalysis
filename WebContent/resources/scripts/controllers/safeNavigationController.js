@@ -57,10 +57,10 @@ myApp.controller('safeNavigationController',  function($scope,DataService) {
 			  // The map() method here has nothing to do with the Google Maps API.
 			  var markers = $scope.locations.map(function(location, i) {
 			    return new google.maps.Marker({
-			      position: location,
-			      label: labels[i % labels.length]
+			      position: location
 			    });
 			  });
+			  
 
 			  // Add a marker clusterer to manage the markers.
 			  var markerCluster = new MarkerClusterer($scope.map, markers,{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});

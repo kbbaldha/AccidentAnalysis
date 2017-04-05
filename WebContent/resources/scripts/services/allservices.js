@@ -33,5 +33,13 @@ myApp.service('DataService', function($http) {
     	
     	return promise;
     }
+    this.getPrediction = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getPrediction"
+        });
+    	
+    	return promise;
+    }
     
 });

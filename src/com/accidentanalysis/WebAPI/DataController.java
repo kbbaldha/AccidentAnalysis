@@ -1,6 +1,7 @@
 package com.accidentanalysis.WebAPI;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;  
 import java.util.List;  
 import org.springframework.web.bind.annotation.PathVariable;  
@@ -57,6 +58,26 @@ public String getMapLocations()
 	
 }
    
-  
+@RequestMapping(value = "/getPrediction", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getPrediction()  
+{  
+		 
+		
+		
+		  int x= 0;
+		  List<Trend> objcts = null;
+		try {
+			objcts = new APIDBAccess().GetPrediction();
+			x = 0;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		  //System.out.println("get trends");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(objcts);  
+} 
 
 }  
