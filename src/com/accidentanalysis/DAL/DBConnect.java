@@ -69,6 +69,41 @@ public class DBConnect {
 		return QR;
 	 
     }
+    
+public static QueryResult executeQueryWithConnection(String query,Connection con){
+    	
+    	QueryResult QR = new QueryResult();
+    	QR.connection = con;
+    	ResultSet rset = null;	
+    	
+		try{
+			 // Create a Statement
+		    Statement stmt = con.createStatement();
+
+		    System.out.println("before");
+		    System.out.println(query);
+		    rset = stmt.executeQuery(query);
+		    System.out.println("after");
+		    //con.close();
+		    QR.resultSet = rset; 
+		   
+		}
+		catch(Exception e){
+			System.out.println(e.toString());
+			try{
+				//con.close();
+				}
+				catch(Exception ex){
+					System.out.println(ex.toString());
+				}
+		}
+		finally{
+			
+		}
+		return QR;
+	 
+    }
+    
     public static String CreateCallableStatement(int count, String spName){
     	String callString = "{call " + spName ;
     	if(count>0){
@@ -102,6 +137,22 @@ public class DBConnect {
 		return osp;
     }
     
+    public static SPClass getCallableStatementWithConnection(Connection con,String spName,int count){
+    	CallableStatement callableStatement = null;
+    	SPClass osp = new SPClass();
+    	osp.con = con;
+		String callString = DBConnect.CreateCallableStatement(count,spName);
+		System.out.println("SP callstring" + callString);	
+		try{
+			 
+			callableStatement = con.prepareCall(callString);
+			osp.callableStatement = callableStatement;
+		}
+		catch(Exception e){
+			
+		}
+		return osp;
+    }
     
     public static CallableStatement ExecuteSP(CallableStatement callableStatement){
     	
