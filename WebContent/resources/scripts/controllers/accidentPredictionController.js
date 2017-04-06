@@ -29,7 +29,8 @@ myApp.controller('accidentPredictionController',  function($scope,DataService) {
 			 var d = data[i];
 			 dpoints.push({
 				 label: d.year, 
-				 y: d.noOfAccidents
+				 y: d.noOfAccidents,
+				 color: d.year>2016? "#111171":"#C97A07"
 			 });
 		 }
 		 return dpoints;
