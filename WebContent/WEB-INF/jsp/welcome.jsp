@@ -144,6 +144,7 @@ body {
 							</div>
 						</div>
 						<div class="animate-if" ng-if="showDiv==4"	ng-controller="trendAnalysisController">
+							Select Year:<select class="form-control" ng-model="selectedYear" ng-change="yearChange()" ng-options="year for year in years"></select>
 							<div id="chartContainer" style="height: 300px; width: 100%;">
 
 							</div>

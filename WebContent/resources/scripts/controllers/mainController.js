@@ -34,10 +34,12 @@ myApp.controller('tableDataController',  function($scope, DataService) {
 		});
 	
 	$scope.getTableData = function(){
+		$scope.$parent.loader.loading = true;
 		DataService.getTableData().then(function(response){
 			//console.log(response.data);
 			$scope.tables = response.data;
 			$scope.total = $scope.tables[$scope.tables.length - 1];
+			$scope.$parent.loader.loading = false;
 		});
 	}
 });

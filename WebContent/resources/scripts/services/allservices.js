@@ -80,4 +80,11 @@ this.getTrendAnalysis = function(){
     	
     	return promise;
     }
+    this.getTrendByMonth = function(year){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getTrendByMonth/" + year
+        });    	
+    	return promise;
+    }
 });

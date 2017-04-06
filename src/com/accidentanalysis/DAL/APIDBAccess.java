@@ -53,6 +53,42 @@ public class APIDBAccess {
 		return trends;
 	}
 	
+public List<Trend> GetTrendData(int Year){
+		
+		
+		QueryResult QR = null;
+		List<Trend> trends = new ArrayList<Trend>();
+		try{
+			
+			
+		     QR = DBConnect.ExecuteQuery("select count(*)as Accident,extract(month from Timestamp) as Month"
+ + " from incident"
+ + " where extract(year from Timestamp)=" + Integer.toString(Year)
+ + " group by extract(month from Timestamp)"
+ + " order by extract(month from Timestamp)");
+		    ResultSet rset = QR.resultSet;
+		   
+		    while (rset.next())
+		    { 
+		    	trends.add(new Trend(Year,rset.getInt(2),rset.getInt(1)));
+		     }
+		}
+		catch(Exception e){
+			System.out.println(e.toString());
+		}
+		finally{
+			
+			try {
+				QR.connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return trends;
+	}
+	
 	public List<TableInfo>GetTableData(){
 		List<TableInfo> tables = new ArrayList<TableInfo>();
 		QueryResult QR = null;

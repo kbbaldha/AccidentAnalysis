@@ -10,6 +10,11 @@ public class Trend {
 		this.Year = y;
 		this.noOfAccidents = noofAcc;
 	}
+	public Trend(int y,int month,int noofAcc){
+		this.Year = y;
+		this.month = month;
+		this.noOfAccidents = noofAcc;
+	}
 	public Trend(){
 		this.Year = 0;
 		this.noOfAccidents = 0;

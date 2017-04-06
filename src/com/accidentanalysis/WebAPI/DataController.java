@@ -105,6 +105,17 @@ public String getAvgDays(@PathVariable String UserName)
 	  	
 	 return g.toJson(days);  
 }
+@RequestMapping(value = "/getTrendByMonth/{Year}", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getTrendByYear(@PathVariable int Year)  
+{
+	List<Trend> trends;
+	
+	  trends = new APIDBAccess().GetTrendData(Year);
+	  System.out.println("get trends");
+	Gson g = new Gson(); 	
+	
+	return g.toJson(trends); 
+}
 
 @RequestMapping(value = "/getTableData/", method = RequestMethod.GET,headers="Accept=application/json")  
 public String getTableData()  

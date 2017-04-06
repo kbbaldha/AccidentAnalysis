@@ -101,8 +101,7 @@ body {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div id="wrapper" class="toggled" ng-controller="mainController"
-		ng-app="myApp">
+	<div id="wrapper" class="toggled" ng-controller="mainController" ng-app="myApp">
 		<div id="loader" ng-show="loader.loading"
 			style="position: absolute; height: 100%; background-color: rgba(0, 0, 0, 0.5); width: 100%; z-index: 1000;">
 			<img src="resources/images/loader.gif" height="100px" width="100px"
@@ -121,6 +120,9 @@ body {
 					ng-click="show(5)">Investigation Report</a></li>
 				<li><a ng-show="'${usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
+                <li>
+                    <a ng-click="show(7)">Table Meta Data</a>
+                </li>
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -130,26 +132,27 @@ body {
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="animate-if" ng-if="showDiv==1"
-							ng-controller="safeNavigationController"></div>
-						<div class="animate-if" ng-if="showDiv==2"
-							ng-controller="accidentPredictionController">
+						<div class="animate-if" ng-if="showDiv==1" ng-controller="safeNavigationController">
+                     		<div id="map"></div>
+                     	</div>
+						<div class="animate-if" ng-if="showDiv==2"	ng-controller="accidentPredictionController">
 							<b>City List:</b>
 							<div ng-repeat="city in cities">{{city.Name}}</div>
 						</div>
-						<div class="animate-if" ng-if="showDiv==3"
-							ng-controller="correlationSpeedController">
+						<div class="animate-if" ng-if="showDiv==3"	ng-controller="correlationSpeedController">
 							<div id="scatterChartContainer" style="height: 300px; width: 100%;">
 							</div>
-							</div>
-						<div class="animate-if" ng-if="showDiv==4"
-							ng-controller="trendAnalysisController">
+						</div>
+						<div class="animate-if" ng-if="showDiv==4"	ng-controller="trendAnalysisController">
 							<div id="chartContainer" style="height: 300px; width: 100%;">
 
 							</div>
 						</div>
-						<div ng-if="showDiv==5"
-							ng-controller="investigationReportController">{{name}}</div>
+  					<div class="animate-if" ng-if="showDiv==5" ng-controller="investigationReportController">
+  						Enter Username: <input class="form-control" type="text" ng-model="userName"></input>
+  						<button class"btn" ng-click="getDays()">Get Average Days</button>
+  						<p ng-show="avgDays > 0" >The avg number of days to solve incident is {{avgDays}}<p>
+  					</div>
 						<div ng-if="showDiv==6" ng-controller="accidentReportController">
 							<form name="incident" novalidate>
 								<center>
@@ -226,7 +229,28 @@ body {
 										<div style="margin-left: -27px; margin-top: 20px; color: red;">{{message}}</div>
 									</div>
 							</form>
-							
+						</div>	
+         			<div class="animate-if" ng-if="showDiv==7" ng-controller="tableDataController">
+  						
+  						<p>The total number of rows are <b>{{total.RowCount}}</b></p>
+  						<br/>
+  						<table class="table table-condensed">
+    					<thead>
+      					<tr>
+       					 	<th>Table Name</th>
+        					<th>Row Count</th>
+     						 </tr>
+    					</thead>
+    					<tbody>
+      					<tr ng-repeat="table in tables">
+        					<td>{{table.TableName}}</td>
+        					<td>{{table.RowCount}}</td>
+      					</tr>
+      					</tbody>
+      					</table>
+  					</div>
+						
+						
 						</div>
 					</div>
 				</div>
@@ -235,4 +259,9 @@ body {
 
 		</div>
 		<!-- /#wrapper -->
+	
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyhMnyMaiJeOXb7flbK2NDs__m7zygWhw&callback=initMap">
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 </body>
