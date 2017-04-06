@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: AccidentAnalysis
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: kbbaldha
+Built-By: nammi
 Implementation-Vendor-Id: AccidentAnalysis
 Build-Jdk: 1.8.0_101
 Implementation-URL: http://projects.spring.io/spring-boot/AccidentAnal

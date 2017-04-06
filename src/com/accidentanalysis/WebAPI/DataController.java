@@ -72,23 +72,14 @@ public String reportIncidents(@RequestBody Incident incident,HttpSession session
 @RequestMapping(value = "/getPrediction", method = RequestMethod.GET,headers="Accept=application/json")  
 public String getPrediction()  
 {  
-		 
-		
-		
-		  int x= 0;
-		  List<Trend> objcts = null;
-		try {
-			objcts = new APIDBAccess().GetPrediction();
-			x = 0;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	List<Prediction> predictions;
+	AccidentPredictionDBAccess accidentPredictionDBAccess = new AccidentPredictionDBAccess();
 	
-		  //System.out.println("get trends");
-	  	Gson g = new Gson(); 	
-	  	
-	  	return g.toJson(objcts);  
+	predictions = accidentPredictionDBAccess.getAccidentPredictionData();
+	System.out.println("prediction data");
+  	Gson g = new Gson(); 	
+  	
+  	return g.toJson(predictions);  
 } 
 @RequestMapping(value = "/getAvgDays/{UserName}", method = RequestMethod.GET,headers="Accept=application/json")  
 public String getAvgDays(@PathVariable String UserName)  

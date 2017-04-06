@@ -173,18 +173,18 @@ public class APIDBAccess {
 		return days;
 	}
 	
-	public List<Trend> GetPrediction() throws SQLException{
-		CallableStatement callableStatement; 
-		SPClass osp =	DBConnect.GetCallableStatement("PROC1",2);
-		String typeTableName = "TEMPTABLE";
-		callableStatement = osp.callableStatement;
-		System.out.println("SP callable");	
-		Object[] data = null;
-		
-		String typeName = "Temp1";
-		List<Trend> tds = new ArrayList<Trend>();
-		return tds;
-	}
+//	public List<Trend> GetPrediction() throws SQLException{
+//		CallableStatement callableStatement; 
+//		SPClass osp =	DBConnect.GetCallableStatement("PROC1",2);
+//		String typeTableName = "TEMPTABLE";
+//		callableStatement = osp.callableStatement;
+//		System.out.println("SP callable");	
+//		Object[] data = null;
+//		
+//		String typeName = "Temp1";
+//		List<Trend> tds = new ArrayList<Trend>();
+//		return tds;
+//	}
 	
 	public List<Trend> GetPredictionTrial() throws SQLException{
 		CallableStatement callableStatement; 

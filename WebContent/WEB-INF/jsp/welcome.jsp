@@ -75,6 +75,11 @@ body {
 <script src="${services}"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart']});
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top"
@@ -121,7 +126,8 @@ body {
 				<li><a ng-show="'${usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
                 <li>
-                    <a ng-click="show(7)">Table Meta Data</a>
+                    <a ng-show="'${usertype}' == 'Transport official'" 
+                    ng-click="show(7)">Table Meta Data</a>
                 </li>
 			</ul>
 		</div>
@@ -136,8 +142,8 @@ body {
                      		<div id="map"></div>
                      	</div>
 						<div class="animate-if" ng-if="showDiv==2"	ng-controller="accidentPredictionController">
-							<b>City List:</b>
-							<div ng-repeat="city in cities">{{city.Name}}</div>
+								<div id="accidentPredictionContainer" style="height: 300px; width: 100%;">
+						</div>
 						</div>
 						<div class="animate-if" ng-if="showDiv==3"	ng-controller="correlationSpeedController">
 							<div id="scatterChartContainer" style="height: 300px; width: 100%;">
