@@ -1,0 +1,57 @@
+
+---STORE PROCEDURE FOR AVG TAKE TAKEN BY TRANSPORT_OFFICIAL----
+
+CREATE OR REPLACE PROCEDURE details ( naam in varchar2, dayis out integer,ledby out integer,usernaam out VARCHAR2)
+AS
+BEGIN
+  select round(avg(extract(day from((i.end_timestamp - i.start_timestamp))))),i.led_by_fk, p.user_name INTO dayis,ledby,usernaam
+  from investigation i, transport_official t, people p
+  where i.led_by_fk = t.User_Id_fk and t.User_id_fk = p.User_Id and lower(p.user_name) = lower(naam)
+  group by i.led_by_fk,p.user_name;
+END;
+
+---TOP5----
+
+select * from (
+select count(*) as Number_of_accidents,LANE_ID_FK from affected
+group by LANE_ID_FK
+order by count(*) desc)
+WHERE ROWNUM <= 5;
+
+
+
+select * from (
+select count(*) as Number_of_accidents,v.make,v.model
+from involves i,vehicle v
+where v.vehicle_id=i.vehicle_id_fk
+group by v.make,v.model
+order by count(*) desc)
+WHERE ROWNUM <= 5;
+
+
+
+select * from (
+select count(*) as Number_of_accidents,event_subtype from incident
+group by event_subtype
+order by count(*) desc)
+WHERE ROWNUM <= 5;
+
+
+select * from(
+select round(avg(extract(day from((i.end_timestamp - i.start_timestamp))))) as days,i.led_by_fk,p.first_name,p.last_name
+from investigation i, transport_official t, people p
+where i.led_by_fk = t.User_Id_fk and t.User_id_fk = p.User_Id
+group by i.led_by_fk,p.first_name,p.last_name
+order by days desc)
+WHERE ROWNUM <= 5
+;   
+
+
+select round(avg(extract(day from(i.end_timestamp - i.start_timestamp)))) as days
+from investigation i;
+
+
+
+
+
+

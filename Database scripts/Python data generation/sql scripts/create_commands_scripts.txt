@@ -40,16 +40,14 @@ constraint pk_affected primary key (Incident_Id_fk,Lane_Id_fk),
 foreign key (Incident_Id_fk) references INCIDENT(Incident_Id),
 foreign key (Lane_Id_fk) references LANE(lane_id));
 
-CREATE TABLE VEHICLE
-(Vehicle_id int not null primary key,
-Make varchar(255),
+CREATE TABLE VEHICLE		
 Model varchar(255));
 
 CREATE TABLE INVOLVES
 (Incident_Id_fk int,
 Vehicle_Id_fk  int,
 Speed  int,
-constraint pk_involves primary key (Incident_Id_fk,Vehicle_Id_fk),
+constraint pk_involves primary key (Incident_Id_fk,Vehicle_Id_fk),	
 foreign key (Incident_Id_fk) references INCIDENT(Incident_Id),
 foreign key (Vehicle_Id_fk) references VEHICLE(Vehicle_id));
 
@@ -72,4 +70,8 @@ CREATE TABLE PHONE_NUMBER
 Phone int not null,
 constraint pk_phnum primary key (User_id_fk,Phone),
 foreign key (User_id_fk) references PEOPLE(User_Id));
+
+
+
+
 
