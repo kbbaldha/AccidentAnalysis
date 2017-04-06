@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.accidentanalysis.DAL.TestDBData;
 import com.accidentanalysis.DAL.UserDbAccess;
-import com.accidentanalysis.Models.User;
+import com.accidentanalysis.Models.*;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 
 @Controller
@@ -22,10 +22,10 @@ public class HomeController {
 			//	+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
 		String message = "hello welcome";// new TestDBData().GetData();
 		User user = (User)session.getAttribute("userlogin");
-		if(null==user){
-			return new ModelAndView("login","message","Session Expired");
-		}
-		return new ModelAndView("welcome", "message", message);
+		/*if(null==user){
+			return new ModelAndView("login","message","Session Expired Login Again");
+		}*/
+		return new ModelAndView("welcome", "usertype","Transport official"/*user.getType()*/);
 	}
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
@@ -56,7 +56,7 @@ public class HomeController {
 		
 		if(null != dbUser){
 			session.setAttribute("userlogin",dbUser);
-			return new ModelAndView("welcome");
+			return new ModelAndView("welcome","usertype",dbUser.getType());
 		}
 		
 		return new ModelAndView("login","message", "Wrong username or password");
@@ -76,14 +76,16 @@ public class HomeController {
 	
 		UserDbAccess userDBAccess =  new UserDbAccess();
 		
-		User dbUser = userDBAccess.RegisterUser(user);
+		String dbUser = userDBAccess.RegisterUser(user).toString();
 		
-		if(null != dbUser){
-			session.setAttribute("userlogin",dbUser);
+		System.out.println("reg message" + dbUser);
+		
+		if(dbUser.length()<=0){
+			session.setAttribute("userlogin",user);
 		//System.out.println(user.getGender());
-			return new ModelAndView("welcome");
+			return new ModelAndView("welcome","usertype",user.getType());
 		}
 		
-		return new ModelAndView("register","message", "Registration Failed Try again");
+		return new ModelAndView("register","message",dbUser);
 	}
 }

@@ -4,13 +4,53 @@ package com.accidentanalysis.Models;
 	public class User {
 	    private int id;
 	    private String username;
+	    private String firstname;
+	    private String lastname;
 	    private String password;
 	    private String gender;
 	    private String type;
-	    private String street;
+	    private int role;
+	    private String job; 
+		private String street;
 	    private String city;
 	    private String state;
 	    private int zip;
+	    
+	    public String getJob() {
+			return job;
+		}
+
+		public void setJob(String job) {
+			this.job = job;
+		}
+
+		public int getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			if(!role.isEmpty()){
+			this.role = Integer.parseInt(role);
+			}
+		}
+	
+	    
+	    public String getFirstname() {
+			return firstname;
+		}
+
+		public void setFirstname(String firstname) {
+			this.firstname = firstname;
+		}
+
+		public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+
 
 	    public String getGender() {
 			return gender;
@@ -56,8 +96,10 @@ package com.accidentanalysis.Models;
 			return zip;
 		}
 
-		public void setZip(int zip) {
-			this.zip = zip;
+		public void setZip(String zip) {
+			if(!zip.isEmpty()){
+			this.zip = Integer.parseInt(zip);
+			}
 		}
 
 		public int getId() {

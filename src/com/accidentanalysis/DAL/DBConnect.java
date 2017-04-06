@@ -1,12 +1,14 @@
 package com.accidentanalysis.DAL;
 
 
-import java.sql.*;  
+import java.sql.*;
+
+import com.accidentanalysis.Models.SPClass;  
 
 public class DBConnect {
     public static final String URL = "jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl"; //"jdbc:mysql://localhost:3306/testdb";
-    public static final String USER = "nhugar";
-    public static final String PASS = "8uhb*UHB";
+    public static final String USER = "ka5";
+    public static final String PASS = "Westend12#";
     /**
      * Get a connection to database
      * @return Connection object
@@ -55,7 +57,7 @@ public class DBConnect {
 		catch(Exception e){
 			System.out.println(e.toString());
 			try{
-				con.close();
+				//con.close();
 				}
 				catch(Exception ex){
 					System.out.println(ex.toString());
@@ -67,16 +69,47 @@ public class DBConnect {
 		return QR;
 	 
     }
-    
-    public static QueryResult ExecuteSP(String spName){
+    public static String CreateCallableStatement(int count, String spName){
+    	String callString = "{call " + spName ;
+    	if(count>0){
+    		callString += "(";
+    		for(int i=0;i<count-1;i++){
+    			callString +="?,";
+    		}
+    		callString += "?)";
+    	}
+    	
+    		callString += "}";
+    	
+    		return callString;
+    }
+    public static SPClass GetCallableStatement(String spName,int count){
+    	CallableStatement callableStatement = null;
+    	SPClass osp = new SPClass();
     	
     	Connection con = DBConnect.getConnection();
-    	QueryResult QR = new QueryResult();
+    	osp.con = con;
+		String callString = DBConnect.CreateCallableStatement(count,spName);
+		System.out.println("SP callstring" + callString);	
+		try{
+			 
+			callableStatement = con.prepareCall(callString);
+			osp.callableStatement = callableStatement;
+		}
+		catch(Exception e){
+			
+		}
+		return osp;
+    }
+    
+    
+    public static CallableStatement ExecuteSP(CallableStatement callableStatement){
     	
-    	CallableStatement callableStatement = null;
+    
+    	
     	
 
-		String getDBUSERByUserIdSql = "{call " + spName + "(?)}";
+		
     	
 		try{
 			 // Create a Statement
@@ -84,15 +117,19 @@ public class DBConnect {
 		//	callableStatement.registerOutParameter(2, java.sql.Types.);
 
 			// execute getDBUSERByUserId store procedure
+			//callableStatement = con.prepareCall(callString);
+			System.out.println("SP start");
+			
 			callableStatement.executeUpdate();
 
-			String userName = callableStatement.getString(2);
-			String createdBy = callableStatement.getString(3);
-			Date createdDate = callableStatement.getDate(4);
-
-			System.out.println("UserName : " + userName);
+			//String userName = callableStatement.getString(2);
+			//String createdBy = callableStatement.getString(3);
+			//Date createdDate = callableStatement.getDate(4);
+			System.out.println(callableStatement.getString(2));
+			/*System.out.println("UserName : " + userName);
 			System.out.println("CreatedBy : " + createdBy);
-			System.out.println("CreatedDate : " + createdDate);
+			System.out.println("CreatedDate : " + createdDate);*/
+			System.out.println("SP executed");
 		   
 		}
 		catch(Exception e){
@@ -107,7 +144,7 @@ public class DBConnect {
 		finally{
 			
 		}
-		return QR;
+		return callableStatement;
 	 
     }
     

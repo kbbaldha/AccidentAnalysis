@@ -6,13 +6,40 @@ myApp.controller('mainController',  function($scope, DataService) {
   $scope.loader.loading = false;
   
   $scope.show = function(showValue){
+	  $scope.$broadcast('initEvent',showValue);
+	  
 	  $scope.showDiv = showValue;
-	  DataService.getCountryList().then(function(response){
-		  console.log(response.data);
-	  });
+	  console.log(showValue);
+	  
+	 
+	  //DataService.getCountryList().then(function(response){
+		//  console.log(response.data);
+	  //});
   }
   
   $scope.$watch("loading",function(){
 	  console.log('changed');
   })
+});
+
+
+myApp.controller('tableDataController',  function($scope, DataService) {
+	$scope.$parent.$watch('showDiv', function(value){
+			
+			if(value == 7){
+				
+				$scope.getTableData();
+			}
+			
+		});
+	
+	$scope.getTableData = function(){
+		$scope.$parent.loader.loading = true;
+		DataService.getTableData().then(function(response){
+			//console.log(response.data);
+			$scope.tables = response.data;
+			$scope.total = $scope.tables[$scope.tables.length - 1];
+			$scope.$parent.loader.loading = false;
+		});
+	}
 });
