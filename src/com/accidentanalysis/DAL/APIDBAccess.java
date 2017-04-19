@@ -182,6 +182,7 @@ public List<Trend> GetTrendData(int Year){
 			   		  +" from investigation i, transport_official t, people p"
 					  +" where i.led_by_fk = t.User_Id_fk and t.User_id_fk = p.User_Id"
 					  +" group by i.led_by_fk,p.user_name, p.first_name, p.LAST_NAME"
+					  +" having round(avg(extract(day from((i.end_timestamp - i.start_timestamp))))) > 0"
 					  +" order by round(avg(extract(day from((i.end_timestamp - i.start_timestamp)))))");
 			    ResultSet rset = QR.resultSet;
 			   

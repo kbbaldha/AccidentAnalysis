@@ -19,7 +19,7 @@ myApp.controller('investigationReportController',  function($scope,DataService) 
   
   $scope.getAllAvgDays = function(){
 	  DataService.getAllAvgDays().then(function(response){
-		  console.log(response.data);
+		  //console.log(response.data);
 		  
 		  $scope.allUsers = response.data;
 		 // $scope.avgDays = response.data;
