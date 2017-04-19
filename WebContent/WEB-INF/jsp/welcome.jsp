@@ -123,7 +123,7 @@ body {
 				<li><a ng-click="show(4)">Trend Analysis</a></li>
 				<li><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(5)">Investigation Report</a></li>
-				<li><a ng-show="'${usertype}' == 'Transport official'"
+				<li><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
                 <li>
                     <a ng-show="'${model.usertype}' == 'Transport official'" 
@@ -161,6 +161,23 @@ body {
   						Enter Username: <input class="form-control" type="text" ng-model="userName"></input>
   						<button class"btn" ng-click="getDays()">Get Average Days</button>
   						<p ng-show="avgDays > 0" >The avg number of days to solve incident is {{avgDays}}<p>
+  						
+  						<table class="table table-condensed">
+    					<thead>
+      					<tr>
+       					 	<th>Name</th>
+        					<th>Username</th>
+        					<th>Average Days</th>
+     					</tr>
+    					</thead>
+    					<tbody>
+      					<tr ng-repeat="user in allUsers">
+        					<td>{{user.FirstName}} {{user.LastName}}</td>
+        					<td>{{user.UserName}}</td>
+        					<td>{{user.AvgDays}}</td>
+      					</tr>
+      					</tbody>
+      					</table>
   					</div>
 						<div ng-if="showDiv==6" ng-controller="accidentReportController">
 							<form name="incident" novalidate>

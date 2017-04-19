@@ -13,6 +13,7 @@ import com.accidentanalysis.Models.MapLocation;
 import com.accidentanalysis.Models.SPClass;
 import com.accidentanalysis.Models.TableInfo;
 import com.accidentanalysis.Models.Trend;
+import com.accidentanalysis.Models.UserAvgDays;
 
 //import oracle.sql.StructDescriptor;
 
@@ -167,6 +168,46 @@ public List<Trend> GetTrendData(int Year){
 		
 
 		return tables;
+	}
+	
+	public List<UserAvgDays> GetAvgDays(){
+		 
+		  
+		QueryResult QR = null;
+			List<UserAvgDays> userAvgDays = new ArrayList<UserAvgDays>();
+			try{
+				
+				
+			     QR = DBConnect.ExecuteQuery("select round(avg(extract(day from((i.end_timestamp - i.start_timestamp))))) as avgdays, p.user_name, p.first_name, p.LAST_NAME"
+			   		  +" from investigation i, transport_official t, people p"
+					  +" where i.led_by_fk = t.User_Id_fk and t.User_id_fk = p.User_Id"
+					  +" group by i.led_by_fk,p.user_name, p.first_name, p.LAST_NAME"
+					  +" order by round(avg(extract(day from((i.end_timestamp - i.start_timestamp)))))");
+			    ResultSet rset = QR.resultSet;
+			   
+			    while (rset.next())
+			    { 	UserAvgDays u = new UserAvgDays();
+			    	u.AvgDays = rset.getInt(1);
+			    	u.UserName = rset.getString(2);
+			    	u.FirstName = rset.getString(3);
+			    	u.LastName = rset.getString(4);
+			    	userAvgDays.add(u);
+			     }
+			}
+			catch(Exception e){
+				System.out.println(e.toString());
+			}
+			finally{
+				
+				try {
+					QR.connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return userAvgDays;
 	}
 	
 	public int GetAvgDays(String Username){

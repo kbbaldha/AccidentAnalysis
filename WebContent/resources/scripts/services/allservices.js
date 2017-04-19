@@ -72,6 +72,15 @@ this.getTrendAnalysis = function(){
     	return promise;
 
     }
+    this.getAllAvgDays = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getAllAvgDays/" 
+        });
+    	
+    	return promise;
+
+    }
     this.getTableData = function(){
     	var promise = $http({
             method : "GET",
