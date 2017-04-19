@@ -9,6 +9,10 @@
 body {
 	background-image: url('http://crunchify.com/bg.png');
 }
+.selected{
+	background: rgba(255,255,255,0.2);
+	color:white;
+}
 </style>
 
 <spring:url value="/resources/css/bootstrap.min.css" var="bootCss" />
@@ -102,7 +106,7 @@ body {
 
 			<ul class="nav navbar-nav navbar-right">
 
-
+				<div style="color:white">Last login: ${model.lastlogin}<div>
 				<li><a href="logout.jsp">Logout </a></li>
 			</ul>
 		</div>
@@ -121,16 +125,17 @@ body {
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> Menu </a></li>
 				<li><a ng-click="show(8)">Dashboard</a></li>
-				<li><a ng-click="show(1)">Safe Navigation</a></li>
-				<li><a ng-click="show(2)">Accident Prediction</a></li>
-				<li><a ng-click="show(3)">Correlation Speed limit</a></li>
-				<li><a ng-click="show(4)">Trend Analysis</a></li>
-				<li><a ng-show="'${usertype}' == 'Transport official'"
+				<li ng-class="{'selected': showDiv == 1 }"><a ng-click="show(1)">Safe Navigation</a></li>
+				<li ng-class="{'selected': showDiv == 2 }"><a ng-click="show(2)">Accident Prediction</a></li>
+				<li ng-class="{'selected': showDiv == 3 }"><a ng-click="show(3)">Correlation Speed limit</a></li>
+				<li ng-class="{'selected': showDiv == 4 }"><a ng-click="show(4)">Trend Analysis</a></li>
+				<li ng-class="{'selected': showDiv == 5 }"><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(5)">Investigation Report</a></li>
-				<li><a ng-show="'${usertype}' == 'Transport official'"
+				<li ng-class="{'selected': showDiv == 6 }"><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
-                <li>
-                    <a ng-click="show(7)">Table Meta Data</a>
+                <li ng-class="{'selected': showDiv == 7 }">
+                    <a ng-click="show(7)" ng-show="'${model.usertype}' == 'Transport official'">Table Meta Data</a>
+
                 </li>
 			</ul>
 		</div>
@@ -138,13 +143,14 @@ body {
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper" style="margin-top: 50px;">
+			
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
 					 <div class="animate-if" ng-if="showDiv==8" ng-controller="dashBoardController">
                      		<div id="dashBoardContainer" style="height: 300px; width: 100%;">
                      	</div>
-                     	<h3>Facts And Statics</h3>
+                     	<h3>Facts And Statistics</h3>
                      	<br>
                      	<div style="font-size: large;color: cornflowerblue;">{{Speed}}</div>
                      	<br>
@@ -162,6 +168,10 @@ body {
 						<div class="animate-if" ng-if="showDiv==3"	ng-controller="correlationSpeedController">
 							<div id="scatterChartContainer" style="height: 300px; width: 100%;">
 							</div>
+						<h3>Facts And Statistics</h3>
+                     	<br>
+                     	<div style="font-size: large;color: cornflowerblue;">{{Corelation}}</div>
+                     	<br>
 						</div>
 						<div class="animate-if" ng-if="showDiv==4"	ng-controller="trendAnalysisController">
 							Select Year:<select class="form-control" ng-model="selectedYear" ng-change="yearChange()" ng-options="year for year in years"></select>
@@ -174,6 +184,23 @@ body {
   						Enter Username: <input class="form-control" type="text" ng-model="userName"></input>
   						<button class"btn" ng-click="getDays()">Get Average Days</button>
   						<p ng-show="avgDays > 0" >The avg number of days to solve incident is {{avgDays}}<p>
+  						
+  						<table class="table table-condensed">
+    					<thead>
+      					<tr>
+       					 	<th>Name</th>
+        					<th>Username</th>
+        					<th>Average Days</th>
+     					</tr>
+    					</thead>
+    					<tbody>
+      					<tr ng-repeat="user in allUsers">
+        					<td>{{user.FirstName}} {{user.LastName}}</td>
+        					<td>{{user.UserName}}</td>
+        					<td>{{user.AvgDays}}</td>
+      					</tr>
+      					</tbody>
+      					</table>
   					</div>
 						<div ng-if="showDiv==6" ng-controller="accidentReportController">
 							<form name="incident" novalidate>

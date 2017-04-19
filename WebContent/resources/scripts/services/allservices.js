@@ -120,4 +120,12 @@ this.getTrendAnalysis = function(){
         });    	
     	return promise;
     }
+    
+    this.getCorelationData =function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getCorelationData/"
+        });    	
+    	return promise;
+    } 
 });

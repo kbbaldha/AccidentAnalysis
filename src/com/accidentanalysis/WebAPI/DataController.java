@@ -187,9 +187,7 @@ public String getInvestigationPeriod()
 } 
 @RequestMapping(value = "/getAvgSpeed", method = RequestMethod.GET,headers="Accept=application/json")  
 public String getAvgSpeed()  
-{  
-		 
-		
+{  		
 		DashboardDBAccess dashboardDBAccess = new DashboardDBAccess();
 		
 		int avgSpeed = dashboardDBAccess.getAvgSpeed();
@@ -199,5 +197,20 @@ public String getAvgSpeed()
 	  	
 	  	return g.toJson(stringBuffer.toString());   
 } 
+
+@RequestMapping(value = "/getCorelationData", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getCorelationData()  
+{  
+		 
+		CorelationData correlations;
+		CorrelationDBAccess correlationDBAccess = new CorrelationDBAccess();
+		
+		correlations = correlationDBAccess.GetCorrelation();
+		System.out.println("get correlations");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(correlations);  
+} 
+
 
 }  

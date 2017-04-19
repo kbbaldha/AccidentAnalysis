@@ -7,7 +7,8 @@ myApp.controller('correlationSpeedController',  function($scope,DataService) {
 		if(value == 3){
 			
 			$scope.getData();
-		}
+			$scope.getCorelation();
+			}
 		
 	});
   
@@ -20,9 +21,14 @@ myApp.controller('correlationSpeedController',  function($scope,DataService) {
 	  });
 	  
   }
+  $scope.getCorelation = function(data){
+	  DataService.getCorelationData().then(function(response){
+		$scope.Corelation = response.data.message +".The calculated correlation value is "+ response.data.corelation;
+	  });
+	  
+  }
   
   $scope.makeDataPoints = function(data){
-	  
 		 var dpoints = [];
 		 for(var i=0;i<data.length;i++){
 			 var d = data[i];
@@ -32,7 +38,6 @@ myApp.controller('correlationSpeedController',  function($scope,DataService) {
 			 });
 		 }
 		 return dpoints;
-		 
 	  }
   
   $scope.drawChart = function(dpoints){
