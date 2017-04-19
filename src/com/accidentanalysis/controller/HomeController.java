@@ -27,10 +27,14 @@ public class HomeController {
 			//	+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
 		String message = "hello welcome";// new TestDBData().GetData();
 		User user = (User)session.getAttribute("userlogin");
-		/*if(null==user){
+		if(null==user){
 			return new ModelAndView("login","message","Session Expired Login Again");
-		}*/
-		return new ModelAndView("welcome", "usertype","Transport official"/*user.getType()*/);
+		}
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("usertype", user.getType());
+		model.put("lastlogin", user.getLogin());
+		return new ModelAndView("welcome","model",model);
+		//return new ModelAndView("welcome", "usertype","Transport official"/*user.getType()*/);
 	}
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session) {

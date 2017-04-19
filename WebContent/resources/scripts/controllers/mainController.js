@@ -17,6 +17,8 @@ myApp.controller('mainController',  function($scope, DataService) {
 	  //});
   }
   
+  $scope.show(8);
+  
   $scope.$watch("loading",function(){
 	  console.log('changed');
   })
