@@ -1,4 +1,9 @@
 package com.accidentanalysis.controller;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -56,7 +61,11 @@ public class HomeController {
 		
 		if(null != dbUser){
 			session.setAttribute("userlogin",dbUser);
-			return new ModelAndView("welcome","usertype",dbUser.getType());
+			//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("usertype", dbUser.getType());
+			model.put("lastlogin", dbUser.getLogin());
+			return new ModelAndView("welcome","model",model);
 		}
 		
 		return new ModelAndView("login","message", "Wrong username or password");

@@ -1,7 +1,8 @@
 package com.accidentanalysis.Models;
 
+import java.sql.Date;
 
-	public class User {
+public class User {
 	    private int id;
 	    private String username;
 	    private String firstname;
@@ -15,6 +16,7 @@ package com.accidentanalysis.Models;
 	    private String city;
 	    private String state;
 	    private int zip;
+	    private Date lastlogin;
 	    
 	    public String getJob() {
 			return job;
@@ -125,6 +127,14 @@ package com.accidentanalysis.Models;
 	    public void setPassword(String password) {
 	        this.password = password;
 	    }
+	    public Date getLogin() {
+	        return lastlogin;
+	    }
+
+	    public void setLogin(Date lastlogin) {
+	        this.lastlogin = lastlogin;
+	    }
+	    
 
 	
 }

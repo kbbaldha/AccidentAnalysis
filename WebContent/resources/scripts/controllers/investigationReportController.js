@@ -5,7 +5,7 @@ myApp.controller('investigationReportController',  function($scope,DataService) 
 		
 		if(value == 5){
 			
-			//$scope.getDays();
+			$scope.getAllAvgDays();
 		}
 		
 	});
@@ -14,6 +14,15 @@ myApp.controller('investigationReportController',  function($scope,DataService) 
 	  DataService.getAvgDays($scope.userName).then(function(response){
 		  console.log(response.data);
 		  $scope.avgDays = response.data;
+	  });
+  }
+  
+  $scope.getAllAvgDays = function(){
+	  DataService.getAllAvgDays().then(function(response){
+		  //console.log(response.data);
+		  
+		  $scope.allUsers = response.data;
+		 // $scope.avgDays = response.data;
 	  });
   }
   
