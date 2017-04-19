@@ -124,7 +124,7 @@ body {
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> Menu </a></li>
-				<li><a ng-click="show(8)">Dashboard</a></li>
+				<li ng-class="{'selected': showDiv == 8 }"><a ng-click="show(8)">Dashboard</a></li>
 				<li ng-class="{'selected': showDiv == 1 }"><a ng-click="show(1)">Safe Navigation</a></li>
 				<li ng-class="{'selected': showDiv == 2 }"><a ng-click="show(2)">Accident Prediction</a></li>
 				<li ng-class="{'selected': showDiv == 3 }"><a ng-click="show(3)">Correlation Speed limit</a></li>

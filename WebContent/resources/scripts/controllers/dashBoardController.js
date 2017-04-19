@@ -24,7 +24,7 @@ myApp.controller('dashBoardController',  function($scope,DataService) {
 	$scope.getAvgSpeed = function(){
   		
  		 $scope.$parent.loader.loading = true;
- 		 alert("getting speed");
+ 		 //alert("getting speed");
   		DataService.getAvgSpeed().then(function(response){
  			 $scope.$parent.loader.loading = false;
 			  $scope.Speed = response.data;
@@ -34,7 +34,7 @@ myApp.controller('dashBoardController',  function($scope,DataService) {
 	$scope.getInvestigationPeriod = function(){
   		
  		 $scope.$parent.loader.loading = true;
- 		 alert("getting investigation Period");
+ 		 //alert("getting investigation Period");
   		DataService.getInvestigationPeriod().then(function(response){
  			 $scope.$parent.loader.loading = false;
  			$scope.InvestigationPeriod = response.data;
