@@ -98,7 +98,7 @@ body {
 
 			<ul class="nav navbar-nav navbar-right">
 
-
+				<div style="color:white">Last login: ${model.lastlogin}<div>
 				<li><a href="logout.jsp">Logout </a></li>
 			</ul>
 		</div>
@@ -121,12 +121,12 @@ body {
 				<li><a ng-click="show(2)">Accident Prediction</a></li>
 				<li><a ng-click="show(3)">Correlation Speed limit</a></li>
 				<li><a ng-click="show(4)">Trend Analysis</a></li>
-				<li><a ng-show="'${usertype}' == 'Transport official'"
+				<li><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(5)">Investigation Report</a></li>
 				<li><a ng-show="'${usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
                 <li>
-                    <a ng-show="'${usertype}' == 'Transport official'" 
+                    <a ng-show="'${model.usertype}' == 'Transport official'" 
                     ng-click="show(7)">Table Meta Data</a>
                 </li>
 			</ul>
@@ -135,6 +135,7 @@ body {
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper" style="margin-top: 50px;">
+			
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">

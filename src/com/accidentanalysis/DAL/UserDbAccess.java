@@ -40,7 +40,10 @@ public User CheckUser(User user){
 		      	user1.setFirstname(rset.getString(9));
 		      	user1.setLastname(rset.getString(10));
 		      	user1.setUsername(rset.getString(11));
-		      	
+		      	user1.setLogin(rset.getDate(12));
+		      	System.out.println("log in");
+		      	DBConnect.ExecuteQuery("insert into loginhistory (user_id,logintime) values (" +user1.getId() + ",current_timestamp)");
+				  
 		     }
 		}
 		catch(Exception e){
