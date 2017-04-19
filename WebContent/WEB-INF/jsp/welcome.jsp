@@ -50,6 +50,10 @@ body {
 	var="safeNavigationController" />
 <script src="${safeNavigationController}"></script>
 <spring:url
+	value="/resources/scripts/controllers/dashBoardController.js"
+	var="dashBoardController" />
+<script src="${dashBoardController}"></script>
+<spring:url
 	value="/resources/scripts/controllers/accidentPredictionController.js"
 	var="accidentPredictionController" />
 <script src="${accidentPredictionController}"></script>
@@ -116,7 +120,7 @@ body {
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> Menu </a></li>
-				<li><a href="#">Dashboard</a></li>
+				<li><a ng-click="show(8)">Dashboard</a></li>
 				<li><a ng-click="show(1)">Safe Navigation</a></li>
 				<li><a ng-click="show(2)">Accident Prediction</a></li>
 				<li><a ng-click="show(3)">Correlation Speed limit</a></li>
@@ -126,8 +130,7 @@ body {
 				<li><a ng-show="'${usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
                 <li>
-                    <a ng-show="'${usertype}' == 'Transport official'" 
-                    ng-click="show(7)">Table Meta Data</a>
+                    <a ng-click="show(7)">Table Meta Data</a>
                 </li>
 			</ul>
 		</div>
@@ -138,6 +141,17 @@ body {
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
+					 <div class="animate-if" ng-if="showDiv==8" ng-controller="dashBoardController">
+                     		<div id="dashBoardContainer" style="height: 300px; width: 100%;">
+                     	</div>
+                     	<h3>Facts And Statics</h3>
+                     	<br>
+                     	<div style="font-size: large;color: cornflowerblue;">{{Speed}}</div>
+                     	<br>
+                     	<div style="font-size: large;color: cornflowerblue;">{{InvestigationPeriod}}</div>
+                     	<br>
+                     	</div>
+                     
 						<div class="animate-if" ng-if="showDiv==1" ng-controller="safeNavigationController">
                      		<div id="map"></div>
                      	</div>

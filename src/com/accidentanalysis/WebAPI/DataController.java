@@ -139,6 +139,48 @@ public String getCorrelation()
 	  	return g.toJson(correlations);  
 } 
 
+@RequestMapping(value = "/getCars", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getCars()  
+{  
+		 
+		List<Car> cars;
+		DashboardDBAccess dashboardDBAccess = new DashboardDBAccess();
+		
+		cars = dashboardDBAccess.getCarsInvolvedInAccident();
+		System.out.println("get CArs");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(cars);  
+}
 
+@RequestMapping(value = "/getInvestigationPeriod", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getInvestigationPeriod()  
+{  
+		 
+		
+		DashboardDBAccess dashboardDBAccess = new DashboardDBAccess();
+		
+		int investigationPeriod = dashboardDBAccess.getInvestigationPeriod();
+		System.out.println("get CArs");
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("The average investigation period of each incident has been " + investigationPeriod +" days");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(stringBuffer.toString());  
+} 
+@RequestMapping(value = "/getAvgSpeed", method = RequestMethod.GET,headers="Accept=application/json")  
+public String getAvgSpeed()  
+{  
+		 
+		
+		DashboardDBAccess dashboardDBAccess = new DashboardDBAccess();
+		
+		int avgSpeed = dashboardDBAccess.getAvgSpeed();
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("The average overspeeding of the cars during each incident is by " + avgSpeed +" mph");
+	  	Gson g = new Gson(); 	
+	  	
+	  	return g.toJson(stringBuffer.toString());   
+} 
 
 }  

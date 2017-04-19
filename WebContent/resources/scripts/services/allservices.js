@@ -87,4 +87,28 @@ this.getTrendAnalysis = function(){
         });    	
     	return promise;
     }
+    
+    this.getCars = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getCars/"
+        });    	
+    	return promise;
+    }
+    
+    this.getAvgSpeed = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getAvgSpeed/"
+        });    	
+    	return promise;
+    }
+    
+    this.getInvestigationPeriod = function(){
+    	var promise = $http({
+            method : "GET",
+            url : "/AccidentAnalysis/api/getInvestigationPeriod/"
+        });    	
+    	return promise;
+    }
 });
