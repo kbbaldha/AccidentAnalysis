@@ -9,6 +9,10 @@
 body {
 	background-image: url('http://crunchify.com/bg.png');
 }
+.selected{
+	background: rgba(255,255,255,0.2);
+	color:white;
+}
 </style>
 
 <spring:url value="/resources/css/bootstrap.min.css" var="bootCss" />
@@ -50,6 +54,10 @@ body {
 	var="safeNavigationController" />
 <script src="${safeNavigationController}"></script>
 <spring:url
+	value="/resources/scripts/controllers/dashBoardController.js"
+	var="dashBoardController" />
+<script src="${dashBoardController}"></script>
+<spring:url
 	value="/resources/scripts/controllers/accidentPredictionController.js"
 	var="accidentPredictionController" />
 <script src="${accidentPredictionController}"></script>
@@ -75,6 +83,11 @@ body {
 <script src="${services}"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart']});
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top"
@@ -93,7 +106,7 @@ body {
 
 			<ul class="nav navbar-nav navbar-right">
 
-
+				<div style="color:white">Last login: ${model.lastlogin}<div>
 				<li><a href="logout.jsp">Logout </a></li>
 			</ul>
 		</div>
@@ -101,219 +114,104 @@ body {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div id="wrapper" class="toggled" ng-controller="mainController"
-		ng-app="myApp">
+	<div id="wrapper" class="toggled" ng-controller="mainController" ng-app="myApp">
 		<div id="loader" ng-show="loader.loading"
 			style="position: absolute; height: 100%; background-color: rgba(0, 0, 0, 0.5); width: 100%; z-index: 1000;">
 			<img src="resources/images/loader.gif" height="100px" width="100px"
 				style="position: absolute; top: 30%; left: 30%;">
 		</div>
 		<!-- Sidebar -->
-<<<<<<< HEAD
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#"> 
-                        Menu
-                 	</a>
-                </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a ng-click="show(1)">Safe Navigation</a>
-                </li>
-                <li>
-                    <a ng-click="show(2)">Accident Prediction</a>
-                </li>
-                <li>
-                    <a ng-click="show(3)">Correlation Speed limit</a>
-                </li>
-                <li>
-                    <a ng-click="show(4)">Trend Analysis</a>
-                </li>
-               <li>
-                    <a ng-show="'${usertype}' == 'Transport official'" ng-click="show(5)">Investigation Report</a>
-                </li>
-                <li>
-                    <a ng-show="'${usertype}' == 'Transport official'" ng-click="show(6)">Accident Report</a>
-                </li>
-                <li>
-                    <a ng-click="show(7)">Table Meta Data</a>
-                </li>
-               </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper" style="margin-top: 50px;">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                     <div class="animate-if" ng-if="showDiv==1" ng-controller="safeNavigationController">
-                     		
-                     		<div id="map"></div>
-                     
-                     </div>
-  					<div class="animate-if" ng-if="showDiv==2" ng-controller="accidentPredictionController"><b>City List:</b>
-  					<div ng-repeat="city in cities">
-  						{{city.Name}}
-  					</div>
-  					</div>
-  					<div class="animate-if" ng-if="showDiv==3" ng-controller="correlationSpeedController">{{name}}</div>
-  					<div class="animate-if" ng-if="showDiv==4" ng-controller="trendAnalysisController">
-  						<div id="chartContainer" style="height: 300px; width: 100%;">
-  						
-  						</div>
-  					</div>
-  					<div class="animate-if" ng-if="showDiv==5" ng-controller="investigationReportController">
-  						Enter Username: <input class="form-control" type="text" ng-model="userName"></input>
-  						<button class"btn" ng-click="getDays()">Get Average Days</button>
-  						<p ng-show="avgDays > 0" >The avg number of days to solve incident is {{avgDays}}<p>
-  					</div>
-  					<div ng-if="showDiv==6" ng-controller="accidentReportController">
-  					<form  th:action="@{/report}" th:object="${incident}" method="post">
-           <div class="col-xs-3"></div>
-           <div class="col-xs-6">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th colspan="2">Report Here</th>
-                    </tr>
-                </thead>
-                <tbody>
-                	 <tr>
-                        <td>Investigator's Id *</td>
-                        <td><input class="form-control" type="text" name="reporterid" value="" th:field="*{reporterid}"/></td>
-                    </tr>
-                     <tr>
-                        <td>Number of team mambers *</td>
-                        <td><input class="form-control" type="text" name="numofteammembers" value="" th:field="*{numberofteammembers}"/></td>
-                    </tr>
-                    <tr>
-                    <td>Incident Type</td>
-                         <td>
-                         <select class="form-control" name ="incidenttype" value = "" th:field="*{eventtype}" >
-                             <option value="roadwork">roadwork</option>
-   							 <option value="disasters">disasters</option>
-   							 <option value="precipitation">precipitation</option>
-   							 <option value="trafficConditions">trafficConditions</option>
-   							 <option value="obstruction">obstruction</option>
-   							 <option value="accidentsAndIncidents">accidentsAndIncidents</option>
- 						</select>
- 						</td>
-                    </tr>
-                      <tr>
-                        <td>Incident Cause</td>
-                       <td>
-                         <select class="form-control" name ="incidentsubtype" value = "" th:field="*{eventsubtype}" >
-  							 <option value="road construction">road construction</option>
-   							 <option value="road maintenance operations">road maintenance operations</option>
-   							 <option value="major flood">major flood</option>
-   							 <option value="vehicle on fire">vehicle on fire</option>
-   							 <option value="snow">snow</option>
-   							 <option value="incident">incident</option>
-   							 <option value="debris on roadway">debris on roadway</option>
-   							 <option value="disabled vehicle">disabled vehicle</option>
-   							 <option value="accident">accident</option>
-   							 <option value="traffic congestion">traffic congestion</option>
- 						</select>
- 						</td>
-                    </tr>
-                      <tr>
-                        <td>Latitude</td>
-                        <td><input class="form-control" type="text" name="latitude" value="" th:field="*{latitude}" /></td>
-                    </tr>
-                      <tr>
-                        <td>Longitude</td>
-                        <td><input class="form-control" type="text" name="longitude" value="" th:field="*{logitude}" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Report" style="margin-right:10px"/><input type="reset" value="Reset" /></td>
-                    </tr>
-                </tbody>
-            </table>
-             <div style="margin-left: 82px;margin-top: -16px;color: red;width: -moz-max-content;">${message}</div>
-            </div>
-            <div class="col-xs-3"></div>
-         </form>
-  		 </div>         
-         			<div class="animate-if" ng-if="showDiv==7" ng-controller="tableDataController">
-  						
-  						<p>The total number of rows are <b>{{total.RowCount}}</b></p>
-  						<br/>
-  						<table class="table table-condensed">
-    					<thead>
-      					<tr>
-       					 	<th>Table Name</th>
-        					<th>Row Count</th>
-     						 </tr>
-    					</thead>
-    					<tbody>
-      					<tr ng-repeat="table in tables">
-        					<td>{{table.TableName}}</td>
-        					<td>{{table.RowCount}}</td>
-      					</tr>
-      					</tbody>
-      					</table>
-  					</div>
-         </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
- 
-	-->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyhMnyMaiJeOXb7flbK2NDs__m7zygWhw&callback=initMap">
-</script>
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-=======
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> Menu </a></li>
-				<li><a href="#">Dashboard</a></li>
+<<<<<<< HEAD
+				<li><a ng-click="show(8)">Dashboard</a></li>
 				<li><a ng-click="show(1)">Safe Navigation</a></li>
 				<li><a ng-click="show(2)">Accident Prediction</a></li>
 				<li><a ng-click="show(3)">Correlation Speed limit</a></li>
 				<li><a ng-click="show(4)">Trend Analysis</a></li>
 				<li><a ng-show="'${usertype}' == 'Transport official'"
+=======
+				<li><a href="#">Dashboard</a></li>
+				<li ng-class="{'selected': showDiv == 1 }"><a ng-click="show(1)">Safe Navigation</a></li>
+				<li ng-class="{'selected': showDiv == 2 }"><a ng-click="show(2)">Accident Prediction</a></li>
+				<li ng-class="{'selected': showDiv == 3 }"><a ng-click="show(3)">Correlation Speed limit</a></li>
+				<li ng-class="{'selected': showDiv == 4 }"><a ng-click="show(4)">Trend Analysis</a></li>
+				<li ng-class="{'selected': showDiv == 5 }"><a ng-show="'${model.usertype}' == 'Transport official'"
+>>>>>>> master
 					ng-click="show(5)">Investigation Report</a></li>
-				<li><a ng-show="'${usertype}' == 'Transport official'"
+				<li ng-class="{'selected': showDiv == 6 }"><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
+<<<<<<< HEAD
+                <li>
+                    <a ng-click="show(7)">Table Meta Data</a>
+=======
+                <li ng-class="{'selected': showDiv == 7 }">
+                    <a ng-show="'${model.usertype}' == 'Transport official'" 
+                    ng-click="show(7)">Table Meta Data</a>
+>>>>>>> master
+                </li>
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper" style="margin-top: 50px;">
+			
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="animate-if" ng-if="showDiv==1"
-							ng-controller="safeNavigationController"></div>
-						<div class="animate-if" ng-if="showDiv==2"
-							ng-controller="accidentPredictionController">
-							<b>City List:</b>
-							<div ng-repeat="city in cities">{{city.Name}}</div>
+					 <div class="animate-if" ng-if="showDiv==8" ng-controller="dashBoardController">
+                     		<div id="dashBoardContainer" style="height: 300px; width: 100%;">
+                     	</div>
+                     	<h3>Facts And Statics</h3>
+                     	<br>
+                     	<div style="font-size: large;color: cornflowerblue;">{{Speed}}</div>
+                     	<br>
+                     	<div style="font-size: large;color: cornflowerblue;">{{InvestigationPeriod}}</div>
+                     	<br>
+                     	</div>
+                     
+						<div class="animate-if" ng-if="showDiv==1" ng-controller="safeNavigationController">
+                     		<div id="map"></div>
+                     	</div>
+						<div class="animate-if" ng-if="showDiv==2"	ng-controller="accidentPredictionController">
+								<div id="accidentPredictionContainer" style="height: 300px; width: 100%;">
 						</div>
-						<div class="animate-if" ng-if="showDiv==3"
-							ng-controller="correlationSpeedController">
+						</div>
+						<div class="animate-if" ng-if="showDiv==3"	ng-controller="correlationSpeedController">
 							<div id="scatterChartContainer" style="height: 300px; width: 100%;">
 							</div>
-							</div>
-						<div class="animate-if" ng-if="showDiv==4"
-							ng-controller="trendAnalysisController">
+						</div>
+						<div class="animate-if" ng-if="showDiv==4"	ng-controller="trendAnalysisController">
+							Select Year:<select class="form-control" ng-model="selectedYear" ng-change="yearChange()" ng-options="year for year in years"></select>
+							<br/>
 							<div id="chartContainer" style="height: 300px; width: 100%;">
 
 							</div>
 						</div>
-						<div ng-if="showDiv==5"
-							ng-controller="investigationReportController">{{name}}</div>
+  					<div class="animate-if" ng-if="showDiv==5" ng-controller="investigationReportController">
+  						Enter Username: <input class="form-control" type="text" ng-model="userName"></input>
+  						<button class"btn" ng-click="getDays()">Get Average Days</button>
+  						<p ng-show="avgDays > 0" >The avg number of days to solve incident is {{avgDays}}<p>
+  						
+  						<table class="table table-condensed">
+    					<thead>
+      					<tr>
+       					 	<th>Name</th>
+        					<th>Username</th>
+        					<th>Average Days</th>
+     					</tr>
+    					</thead>
+    					<tbody>
+      					<tr ng-repeat="user in allUsers">
+        					<td>{{user.FirstName}} {{user.LastName}}</td>
+        					<td>{{user.UserName}}</td>
+        					<td>{{user.AvgDays}}</td>
+      					</tr>
+      					</tbody>
+      					</table>
+  					</div>
 						<div ng-if="showDiv==6" ng-controller="accidentReportController">
 							<form name="incident" novalidate>
 								<center>
@@ -390,7 +288,28 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyhMnyMaiJeOXb7flbK2NDs__
 										<div style="margin-left: -27px; margin-top: 20px; color: red;">{{message}}</div>
 									</div>
 							</form>
-							
+						</div>	
+         			<div class="animate-if" ng-if="showDiv==7" ng-controller="tableDataController">
+  						
+  						<p>The total number of rows are <b>{{total.RowCount}}</b></p>
+  						<br/>
+  						<table class="table table-condensed">
+    					<thead>
+      					<tr>
+       					 	<th>Table Name</th>
+        					<th>Row Count</th>
+     						 </tr>
+    					</thead>
+    					<tbody>
+      					<tr ng-repeat="table in tables">
+        					<td>{{table.TableName}}</td>
+        					<td>{{table.RowCount}}</td>
+      					</tr>
+      					</tbody>
+      					</table>
+  					</div>
+						
+						
 						</div>
 					</div>
 				</div>
@@ -399,5 +318,9 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyhMnyMaiJeOXb7flbK2NDs__
 
 		</div>
 		<!-- /#wrapper -->
->>>>>>> dev-namitha
+	
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyhMnyMaiJeOXb7flbK2NDs__m7zygWhw&callback=initMap">
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 </body>

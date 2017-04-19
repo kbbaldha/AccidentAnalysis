@@ -134,7 +134,7 @@ body {
 				<li ng-class="{'selected': showDiv == 6 }"><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
                 <li ng-class="{'selected': showDiv == 7 }">
-                    <a ng-show="'${model.usertype}' == 'Transport official'">Table Meta Data</a>
+                    <a ng-click="show(7)" ng-show="'${model.usertype}' == 'Transport official'">Table Meta Data</a>
 
                 </li>
 			</ul>
