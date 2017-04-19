@@ -9,6 +9,10 @@
 body {
 	background-image: url('http://crunchify.com/bg.png');
 }
+.selected{
+	background: rgba(255,255,255,0.2);
+	color:white;
+}
 </style>
 
 <spring:url value="/resources/css/bootstrap.min.css" var="bootCss" />
@@ -117,15 +121,15 @@ body {
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> Menu </a></li>
 				<li><a href="#">Dashboard</a></li>
-				<li><a ng-click="show(1)">Safe Navigation</a></li>
-				<li><a ng-click="show(2)">Accident Prediction</a></li>
-				<li><a ng-click="show(3)">Correlation Speed limit</a></li>
-				<li><a ng-click="show(4)">Trend Analysis</a></li>
-				<li><a ng-show="'${model.usertype}' == 'Transport official'"
+				<li ng-class="{'selected': showDiv == 1 }"><a ng-click="show(1)">Safe Navigation</a></li>
+				<li ng-class="{'selected': showDiv == 2 }"><a ng-click="show(2)">Accident Prediction</a></li>
+				<li ng-class="{'selected': showDiv == 3 }"><a ng-click="show(3)">Correlation Speed limit</a></li>
+				<li ng-class="{'selected': showDiv == 4 }"><a ng-click="show(4)">Trend Analysis</a></li>
+				<li ng-class="{'selected': showDiv == 5 }"><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(5)">Investigation Report</a></li>
-				<li><a ng-show="'${model.usertype}' == 'Transport official'"
+				<li ng-class="{'selected': showDiv == 6 }"><a ng-show="'${model.usertype}' == 'Transport official'"
 					ng-click="show(6)">Accident Report</a></li>
-                <li>
+                <li ng-class="{'selected': showDiv == 7 }">
                     <a ng-show="'${model.usertype}' == 'Transport official'" 
                     ng-click="show(7)">Table Meta Data</a>
                 </li>
